@@ -1,0 +1,117 @@
+<div fxLayoutAlign="center center">
+  <div fxFlex="800px">
+    <form [formGroup]="form" width="800px" novalidate>
+
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="center center" class="heading">
+          <h1>INVOICE</h1>
+        </div>
+
+        <div fxLayout="row">
+          <div fxFlex="50">
+            <ng-container>
+              <span matPrefix>Invoice #</span>
+              <input matInput id="invoice-number" ng-model="invoice.invoice_number"/>
+            </ng-container>
+          </div>
+          <div fxFlex="50">
+            <img [hidden]="logoRemoved" id="company_logo" [src]="logoSrc" alt="your image" width="300"/>
+            <div fxLayoutAlign="end center">
+              <div class="noPrint" [hidden]="printMode">
+                <a (click)="editLogo()" href='#'>Edit Logo</a>
+                <a (click)="logoRemoved=!logoRemoved" id="remove_logo" href='#'>{{ logoRemoved ? 'Show' : 'Hide' }}
+                  logo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div fxLayout="row">
+        <div fxFlex="50">
+          <label>{{ invoice.customer_info.name  }}</label>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="end center">
+          <label>{{ invoice.company_info.name  }}</label>
+        </div>
+      </div>
+
+      <br><br>
+      <hr>
+
+      <div fxLayout.xs="column" style="font-weight: bolder">
+        <div fxFlex="40">Name</div>
+        <div fxFlex="10">Unit</div>
+        <div fxFlex="10">Qty</div>
+        <div fxFlex="20">Cost</div>
+        <div fxFlex="20" style="text-align: right">Total</div>
+      </div>
+
+      <div formArrayName="invoiceItems" style="font-weight: bolder; text-align: center">
+        <div fxLayout.xs="column"
+             *ngFor="let item of invoiceItems.controls; let i=index; let odd=odd;" [formGroupName]="i"
+             [ngClass]="{odd_row: odd}">
+          <ng-container fxFlex="40">
+            <span matPrefix><button mat-icon-button (click)="removeItem(item)">
+              <mat-icon class="md-24" aria-label="remove">clear</mat-icon>
+              </button>
+              {{i + 1}}. &nbsp;</span>
+            <input class="form-control" matInput formControlName="name">
+          </ng-container>
+          <ng-container fxFlex="10">
+            <input class="form-control" matInput formControlName="unit">
+          </ng-container>
+          <ng-container matInput fxFlex="10">
+            <input class="form-control" matInput type="number" formControlName="qty">
+          </ng-container>
+          <ng-container fxFlex="20">
+            <input class="form-control" matInput type="number" formControlName="cost">
+          </ng-container>
+          <ng-container fxFlex="20">
+            <input class="form-control right_placeholder" matInput disabled value="{{ item.value.total | currency  }}">
+          </ng-container>
+
+        </div>
+      </div>
+      <div fxLayout="row">
+        <button mat-mini-fab (click)="addItem()" class="md-small">+</button>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex="50">
+        </div>
+        <div fxFlex="20">
+          <label>Sub total</label>
+        </div>
+        <div fxFlex="30">
+          <input class="form-control right_placeholder" matInput disabled value="{{ form.value.subTotal | currency  }}">
+        </div>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex></div>
+        <mat-form-field fxFlex="20">
+          <input style="direction: rtl;" matInput type="number" formControlName="taxPercent" placeholder="% tax">
+          <span matSuffix>&nbsp; %</span>
+        </mat-form-field>
+        <mat-form-field fxFlex="30">
+          <input class="form-control right_placeholder" matInput disabled value="{{ form.value.tax | currency  }}">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex="50">
+        </div>
+        <div fxFlex="20">
+          <label>Grant total</label>
+        </div>
+        <div fxFlex="30">
+          <input class="form-control right_placeholder" matInput disabled
+                 value="{{ form.value.grantTotal | currency  }}">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
