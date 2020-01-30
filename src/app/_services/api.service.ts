@@ -10,19 +10,18 @@ import {catchError, retry} from 'rxjs/operators';
 export class ApiService {
 
   private errMsg: string;
-  baseUrl: 'http://localhost:3000/clients';
+  baseUrl: 'http://localhost:8080/';
 
-  // baseUrl: 'http://localhost:3000/clients';
 
   constructor(private http: HttpClient) {
   }
 
   // Http Options
-  httpOptions = {
+  /*httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  };
+  };*/
 
   //  Handle API errors
 
@@ -49,18 +48,17 @@ export class ApiService {
     return this.http
       .post(
         this.baseUrl + 'clients',
-        client,
-        this.httpOptions
+        client
       )
       .pipe(retry(2), catchError(this.handleError));
   }
 
   getCustomerList(): Observable<any> {
-    return this.http.get(this.baseUrl, this.httpOptions);
+    return this.http.get(this.baseUrl);
   }
 
-  login(value: any) {
-    return this.http.post(this.baseUrl + 'auth/customer/create' , this.httpOptions);
+  login(value: any): Observable<any> {
+   return this.http.post(this.baseUrl + 'login', value);
   }
 }
 
