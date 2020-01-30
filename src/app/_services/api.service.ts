@@ -10,7 +10,7 @@ import {catchError, retry} from 'rxjs/operators';
 export class ApiService {
 
   private errMsg: string;
-  baseUrl: 'http://localhost:8080/';
+  baseUrl = 'http://localhost:8080/';
 
 
   constructor(private http: HttpClient) {
