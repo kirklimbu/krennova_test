@@ -24,10 +24,10 @@ export class SmsComponent implements OnInit {
   }
 
   sendSms() {
-   /* this.apiService.sendSms(this.smsForm.value)
+    this.apiService.sendSms(this.smsForm.value)
       .subscribe(resopnse => {
         console.log('sms respons' + resopnse);
-      });*/
+      });
 
   }
 }

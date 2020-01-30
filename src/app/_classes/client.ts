@@ -3,6 +3,6 @@ export interface Client {
   name: string;
   address: string;
   mobile: number;
-  purposeOfVisit: string;
+  purposeOfVisit: number;
   // services: DentalServices;
 }
