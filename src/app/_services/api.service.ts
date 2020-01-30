@@ -60,7 +60,7 @@ export class ApiService {
   }
 
   login(value: any) {
-    return this.http.post(this.baseUrl, this.httpOptions);
+    return this.http.post(this.baseUrl + 'auth/customer/create' , this.httpOptions);
   }
 }
 
