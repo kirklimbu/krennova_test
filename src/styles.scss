@@ -1,0 +1,47 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+html,
+body {
+  height: 100%;
+  text-transform: capitalize;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Body Content */
+.body-content {
+  width: 100%;
+  position: relative;
+  background: #f0f0fa;
+  -webkit-transition: padding 0.3s;
+  transition: padding 0.3s;
+  min-height: 100vh;
+}
+.ms-content-wrapper {
+  padding: 30px;
+}
+
+/* Navbar */
+.navbar {
+  border-radius: 0;
+  background: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 30px;
+}
+.navbar .navbar-nav li a:hover {
+  background: transparent;
+  color: coral;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+.img-fluid{
+  border-radius: 15rem;
+}
