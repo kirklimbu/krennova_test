@@ -1,0 +1,72 @@
+<!--grid row-->
+<div class="row">
+  <!--grid col-->
+  <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 m-auto">
+    <section fxLayout="row wrap" fxLayoutAlign="center center">
+      <mat-card fxFlex="500px" fxFlex.xs="100%">
+        <mat-card-title align="center">Enter Client Details</mat-card-title>
+        <form [formGroup]="customerForm" autocomplete="off" novalidate (ngSubmit)="createCustomer()"
+              fxLayout="column wrap"
+              fxLayoutAlign="center center" fxLayoutGap="10px">
+
+          <mat-card-content>
+            <mat-form-field  >
+              <input matInput type="text" placeholder=" Name" formControlName="name" id="name" >
+              <mat-hint align="end">Enter client's full name</mat-hint>
+              <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+               <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error>-->
+            </mat-form-field>
+
+
+
+            <mat-form-field>
+              <input matInput type="text" placeholder="Customer's address" formControlName="address">
+              <mat-hint align="end">Enter client's address </mat-hint>
+              <!--<mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+              <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>-->
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput type="number" placeholder="Customer's mobile number" formControlName="mobile">
+              <mat-hint align="end">Enter client's mobile number </mat-hint>
+              <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
+              <mat-error *ngIf="hasError('mobile', 'maxlength')">You have more than 100 characters</mat-error>-->
+            </mat-form-field>
+            <mat-form-field>
+              <mat-hint align="end">Select client's purpose of visit </mat-hint>
+
+              <mat-select placeholder="Purpose of visit"  formControlName="purposeOfVisit" multiple>
+                <!-- <mat-select-trigger>{{toppings.value ? toppings.value[0] : ''}}
+                  &lt;!&ndash; <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
+                     (
+                     +{{toppings.value.length - 1}}
+                     {{toppings.value?.length === 2 ? 'other' : 'others'}}
+                     )
+                   </span>&ndash;&gt;
+                 </mat-select-trigger>-->
+
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping.type}}</mat-option>
+
+              </mat-select>
+            </mat-form-field>
+
+
+          </mat-card-content>
+
+          <mat-card-actions align="center">
+            <button mat-raised-button color="primary" [disabled]="!customerForm.valid">Save</button>
+            <button type="button" mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+            <button type="button" mat-raised-button color="secondary" (click)="onlogin()">test</button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+      <hr>
+      {{customerForm.value |json}}
+    </section>
+
+
+
+  </div>
+  <!--grid col-->
+</div>
+<!--grid row-->

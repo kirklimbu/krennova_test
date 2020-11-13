@@ -1,0 +1,26 @@
+<mat-card class="example-card " >
+  <mat-card-header >
+<!--    <div mat-card-avatar class="example-header-image"></div>-->
+    <mat-card-title  classs="mx-auto">Message</mat-card-title>
+    <mat-card-subtitle  classs="mx-auto">SMS for clients</mat-card-subtitle>
+  </mat-card-header>
+  <!--  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+  <mat-card-content  fxLayoutAlign="center center">
+    <form class="example-form"  (ngSubmit)="sendSms()" [formGroup]="smsForm" novalidate>
+
+      <mat-form-field class="example-full-width mx-auto"  >
+        <span matPrefix>+977 &nbsp;</span>
+        <input type="tel" matInput placeholder="Mobile" formControlName="mobile">
+        <mat-icon matSuffix>mobile</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Message" formControlName="message"></textarea>
+      </mat-form-field>
+    </form>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" align="center" [disabled]="!smsForm.valid">Send</button>
+<!--    <button mat-button>SHARE</button>-->
+  </mat-card-actions>
+</mat-card>

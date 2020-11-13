@@ -22,8 +22,6 @@ body {
   -webkit-transition: padding 0.3s;
   transition: padding 0.3s;
   min-height: 100vh;
-}
-.ms-content-wrapper {
   padding: 30px;
 }
 
@@ -39,9 +37,4 @@ body {
   color: coral;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-.img-fluid{
-  border-radius: 15rem;
-}
+
