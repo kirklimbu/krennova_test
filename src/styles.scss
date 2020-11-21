@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-
 html,
 body {
   height: 100%;
@@ -22,7 +21,7 @@ body {
   -webkit-transition: padding 0.3s;
   transition: padding 0.3s;
   min-height: 100vh;
-  padding: 30px;
+  // padding: 30px;
 }
 
 /* Navbar */
@@ -36,5 +35,6 @@ body {
   background: transparent;
   color: coral;
 }
-
-
+.content-wrapper {
+  padding: 30px;
+}
