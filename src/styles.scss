@@ -2,19 +2,15 @@
 
 html,
 body {
-  height: 100%;
-  text-transform: capitalize;
-}
-
-body {
   margin: 0;
+  height: 100%;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 /* You can add global styles to this file, and also import other style files */
 
 /* Body Content */
-.body-content {
+/* .body-content {
   width: 100%;
   position: relative;
   background: #f0f0fa;
@@ -22,7 +18,7 @@ body {
   transition: padding 0.3s;
   min-height: 100vh;
   // padding: 30px;
-}
+} */
 
 /* Navbar */
 .navbar {
@@ -38,3 +34,13 @@ body {
 .content-wrapper {
   padding: 30px;
 }
+/* .sidebar {
+  display: block;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #5dbce2;
+  margin: 0.25rem 0 0.25rem 0.25rem;
+  border-radius: 0.5rem;
+  color: white;
+  position: sticky;
+} */

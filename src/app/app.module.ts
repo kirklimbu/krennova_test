@@ -11,14 +11,11 @@ import { InvoiceComponent } from "./_components/invoice/invoice.component";
 import { HttpClientModule } from "@angular/common/http";
 import { ToastrModule } from "ngx-toastr";
 import { JwtModule } from "@auth0/angular-jwt";
-import { PovListComponent } from './_components/pov-list/pov-list.component';
+import { PovListComponent } from "./_components/pov-list/pov-list.component";
+import { SidenavService } from "./core/components/sidenav/services/sidenav.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    InvoiceComponent,    
-    PovListComponent
-  ],
+  declarations: [AppComponent, InvoiceComponent, PovListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -38,7 +35,7 @@ import { PovListComponent } from './_components/pov-list/pov-list.component';
       },
     }),
   ],
-  providers: [],
+  providers: [SidenavService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

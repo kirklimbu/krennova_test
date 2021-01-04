@@ -1,5 +1,14 @@
 <!--<nav class="navbar navbar-expand navbar-light bg-light" *ngIf="currentUser">-->
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
+  <button
+    #drawer
+    mat-icon-button
+    [class.active]="toggleActive"
+    (click)="sidenav.toggle()"
+    class="rightSidenav_toggle"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
   <span class="navbar-brand" style="font-family: 'URW Gothic'">
     <!--      <img src="assets/images/logo.png" style="width: 80px;height: 80px">-->
     Aama Dental |
@@ -88,8 +97,7 @@
     </button>
     <button mat-menu-item>
       <mat-icon>power_settings_new</mat-icon>
-      <span class='logout'>Logout</span>
+      <span class="logout">Logout</span>
     </button>
   </mat-menu>
- 
 </nav>
