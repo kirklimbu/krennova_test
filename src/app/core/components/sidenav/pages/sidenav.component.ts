@@ -1,13 +1,7 @@
-import {
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  ViewChild,
-} from "@angular/core";
-import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { MatSidenav } from "@angular/material";
-import { SidenavService } from "./services/sidenav.service";
+import { SidenavService } from "../services/sidenav.service";
 
 @Component({
   selector: "app-sidenav",

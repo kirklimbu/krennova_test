@@ -5,8 +5,8 @@ import { CommonModule } from "@angular/common";
 import { CoreRoutingModule } from "./core-routing.module";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { MaterialModule } from "../shared/material-lib/material/material.module";
-import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { SidenavService } from "./components/sidenav/services/sidenav.service";
+import { SidenavComponent } from "./components/sidenav/pages/sidenav.component";
 const DECLARATIONS: any[] = [
   // SidenavComponent,
   // QuickbarComponent,
@@ -19,6 +19,6 @@ const DECLARATIONS: any[] = [
   declarations: [...DECLARATIONS],
   imports: [CommonModule, CoreRoutingModule, MaterialModule],
   exports: [...DECLARATIONS],
-  providers: [SidenavService],
+  // providers: [SidenavService],
 })
 export class CoreModule {}

@@ -1,11 +1,11 @@
+import { MaterialModule } from "src/app/shared/material-lib/material/material.module";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { LoginRoutingModule } from "./login-routing.module";
 import { LoginComponent } from "./pages/login/login.component";
 import { ReactiveFormsModule } from "@angular/forms";
-import { SharedModule } from 'src/app/shared/shared.module';
-import { MaterialModule } from 'src/app/material/material.module';
+import { SharedModule } from "src/app/shared/shared.module";
 
 @NgModule({
   declarations: [LoginComponent],
@@ -14,7 +14,7 @@ import { MaterialModule } from 'src/app/material/material.module';
     LoginRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
   ],
 })
 export class LoginModule {}

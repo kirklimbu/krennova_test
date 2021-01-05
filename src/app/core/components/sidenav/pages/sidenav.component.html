@@ -1,0 +1,28 @@
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side" opened="true" class="sidenav">
+    <mat-nav-list class="sidenav-items">
+      <!-- Logo -->
+      <div class="logo-sn ms-d-block-lg">
+        <!-- for logo -->
+      </div>
+      <a
+        class="link"
+        mat-list-item
+        routerLinkActive
+        [routerLink]="['/aama-dental/dashboard']"
+        ><mat-icon>dashboard</mat-icon> Dashboard
+      </a>
+      <a mat-list-item routerLinkActive [routerLink]="['/aama-dental/client']">
+        <mat-icon>person</mat-icon> Customer
+      </a>
+      <a mat-list-item routerLinkActive [routerLink]="['/aama-dental/sms']"
+        ><mat-icon>sms</mat-icon> SMS
+      </a>
+    </mat-nav-list></mat-drawer
+  >
+  <mat-drawer-content class="main-content">
+    <app-navbar></app-navbar>
+
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

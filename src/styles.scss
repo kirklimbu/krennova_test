@@ -2,45 +2,66 @@
 
 html,
 body {
-  margin: 0;
+  // margin: 0;
   height: 100%;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  min-height: 100vh;
+  font-family: system-ui, Roboto, "Helvetica Neue", sans-serif;
+  display: grid;
+  grid-template: auto 1fr auto / auto;
 }
+/* .content-wrapper {
+  display: grid;
+  grid-template-columns: minmax(150px, 25%) 1fr;
+} */
 
 /* You can add global styles to this file, and also import other style files */
 
-/* Body Content */
-/* .body-content {
-  width: 100%;
-  position: relative;
-  background: #f0f0fa;
-  -webkit-transition: padding 0.3s;
-  transition: padding 0.3s;
-  min-height: 100vh;
-  // padding: 30px;
-} */
-
 /* Navbar */
 .navbar {
-  border-radius: 0;
   background: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); //shadow
   padding: 0 30px;
+  padding: 2rem;
+  grid-column: 1 / 4;
+  position: sticky;
 }
-.navbar .navbar-nav li a:hover {
-  background: transparent;
-  color: coral;
-}
+
 .content-wrapper {
   padding: 30px;
 }
-/* .sidebar {
-  display: block;
-  align-items: center;
+.sidenav {
+  background: rgb(224, 228, 230);
+  grid-column: 1 / 2;
+  padding: 1rem 0 0.5rem 0;
+  margin: 0.2rem 0.25rem 5rem 0.25rem;
+  border-radius: 0.22rem;
   min-height: 100vh;
-  background-color: #5dbce2;
-  margin: 0.25rem 0 0.25rem 0.25rem;
-  border-radius: 0.5rem;
-  color: white;
-  position: sticky;
-} */
+  min-width: 220px;
+  box-shadow: 0 8px 6px -6px black;
+}
+.sidenav .logo-sn a {
+  display: block;
+  padding: 17px 0;
+}
+.logo-sn img {
+  display: grid;
+  max-width: 25px;
+  align-items: center;
+}
+.main-content {
+  background: rgb(221, 212, 209);
+  grid-column: 2 / 4;
+  min-height: 100vh;
+}
+
+mat-icon {
+  padding: 0 2.5rem 0 0;
+}
+
+.sidenav-items a:hover {
+  color: rgb(4, 129, 212);
+}
+
+.sidenav-items a:active {
+  background-color: #69f0ae;
+}

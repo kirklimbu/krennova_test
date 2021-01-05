@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGuardService } from './core/guards/auth/auth-guard.service';
-import { InvoiceComponent } from "./_components/invoice/invoice.component";
+import { AuthGuardService } from "./core/guards/auth/auth-guard.service";
 import { PovListComponent } from "./_components/pov-list/pov-list.component";
 
 const routes: Routes = [
@@ -11,19 +10,14 @@ const routes: Routes = [
       import("./features/login/login.module").then((m) => m.LoginModule),
   },
   {
-    path: 'aama-dental',
+    path: "aama-dental",
     loadChildren: () =>
-      import('./features/dashboard/dashboard.module').then(
+      import("./features/dashboard/dashboard.module").then(
         (m) => m.DashboardModule
       ),
     // canActivate: [AuthGuardService],
   },
-  {
-    path: "invoice",
-    // canActivate: [AuthGuard],
-    component: InvoiceComponent,
-  },
-  
+
   {
     path: "pov",
     // canActivate: [AuthGuard],

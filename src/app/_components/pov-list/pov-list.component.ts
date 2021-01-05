@@ -8,6 +8,7 @@ import {MatTableDataSource} from '@angular/material';
   styleUrls: ['./pov-list.component.scss']
 })
 export class PovListComponent implements OnInit {
+  /* props */
   povListForm: FormGroup;
   displayedColumns: string [] = ['sn', 'pov'];
   clientListTableDataSource = ['1', 'test'];

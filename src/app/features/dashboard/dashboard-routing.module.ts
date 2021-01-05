@@ -9,7 +9,7 @@ const routes: Routes = [
     // home
     children: [
       {
-        path: "home",
+        path: "dashboard",
         loadChildren: () =>
           import("./../home/home.module").then((m) => m.HomeModule),
         data: {
@@ -36,9 +36,9 @@ const routes: Routes = [
         // canActivate: [UserRoleGuardService],
       },
       {
-        path: "home",
+        path: "invoice",
         loadChildren: () =>
-          import("./../home/home.module").then((m) => m.HomeModule),
+          import("./../invoice/invoice.module").then((m) => m.InvoiceModule),
         data: {
           // allowedRoles: [UserRoleType.ROLE_ALL],
         },

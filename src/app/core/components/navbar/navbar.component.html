@@ -7,7 +7,9 @@
     (click)="sidenav.toggle()"
     class="rightSidenav_toggle"
   >
-    <mat-icon>menu</mat-icon>
+    <mat-icon color="primary" (click)="onChangeIcon()">{{
+      toggleActive ? "menu" : "sort"
+    }}</mat-icon>
   </button>
   <span class="navbar-brand" style="font-family: 'URW Gothic'">
     <!--      <img src="assets/images/logo.png" style="width: 80px;height: 80px">-->
@@ -31,46 +33,46 @@
     style="font-family: Cantarell"
   >
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
-          [routerLink]="['/aama-dental/home']"
+          [routerLink]="['/aama-dental/dashboard']"
           >Home</a
         >
-      </li>
-      <li class="nav-item">
+      </li> -->
+     <!--  <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
           [routerLink]="['/aama-dental/sms']"
           >SMS</a
         >
-      </li>
+      </li> -->
       <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
-          [routerLink]="['/invoice']"
+          [routerLink]="['/aama-dental/invoice']"
           >Invoice</a
         >
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
           [routerLink]="['/pov']"
           >Enter POV</a
         >
-      </li>
-      <li class="nav-item">
+      </li> -->
+     <!--  <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
           [routerLink]="['/aama-dental/client']"
           >client list</a
         >
-      </li>
+      </li> -->
       <!--    <a class="nav-item nav-link" routerLink="/customerlist">Client </a>-->
       <!--    <a class="nav-item nav-link" routerLinkActive="is-active"="active" (click)="logout()">Logout</a>-->
     </ul>
@@ -96,7 +98,7 @@
       <span>Check voice mail</span>
     </button>
     <button mat-menu-item>
-      <mat-icon>power_settings_new</mat-icon>
+      <mat-icon color="warn">power_settings_new</mat-icon>
       <span class="logout">Logout</span>
     </button>
   </mat-menu>
