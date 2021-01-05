@@ -1,0 +1,16 @@
+<div class="d-flex align-items-center row">
+  <button mat-button (click)="onEdit()" color="primary" *ngIf="enableEdit">
+    Edit
+  </button>
+
+  <button mat-button (click)="onDelete()" color="accent" *ngIf="enableDelete">
+    Delete</button
+  ><button
+    mat-button
+    (click)="onViewDetails()"
+    color="info"
+    *ngIf="enableViewDetails"
+  >
+    Delete
+  </button>
+</div>
