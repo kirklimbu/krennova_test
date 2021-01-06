@@ -1,5 +1,17 @@
 <div class="content-wrapper">
-  <table mat-table [dataSource]="clientListTable" class="mat-elevation-z8">
+  <!-- table top bar -->
+  <app-table-top-bar
+    [enableSearch]="true"
+    [enableFromDate]="true"
+    [enableToDate]="true"
+    (search)="onSearch($event)"
+  ></app-table-top-bar>
+  <!-- table top bar end-->
+  <table
+    mat-table
+    [dataSource]="invoiceListDataSource$ | async"
+    class="mat-elevation-z8"
+  >
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 

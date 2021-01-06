@@ -10,7 +10,7 @@ const routes: Routes = [
       import("./features/login/login.module").then((m) => m.LoginModule),
   },
   {
-    path: "aama-dental",
+    path: "dental",
     loadChildren: () =>
       import("./features/dashboard/dashboard.module").then(
         (m) => m.DashboardModule
