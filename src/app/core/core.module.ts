@@ -7,6 +7,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { MaterialModule } from "../shared/material-lib/material/material.module";
 import { SidenavService } from "./components/sidenav/services/sidenav.service";
 import { SidenavComponent } from "./components/sidenav/pages/sidenav.component";
+import { OnreturnDirective } from "./directives/onreturn.directive";
 const DECLARATIONS: any[] = [
   // SidenavComponent,
   // QuickbarComponent,
@@ -14,6 +15,7 @@ const DECLARATIONS: any[] = [
   // PreloaderComponent,
   NavbarComponent,
   SidenavComponent,
+  OnreturnDirective,
 ];
 @NgModule({
   declarations: [...DECLARATIONS],

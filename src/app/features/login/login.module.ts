@@ -1,3 +1,4 @@
+import { CoreModule } from "src/app/core/core.module";
 import { MaterialModule } from "src/app/shared/material-lib/material/material.module";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -15,6 +16,7 @@ import { SharedModule } from "src/app/shared/shared.module";
     SharedModule,
     ReactiveFormsModule,
     MaterialModule,
+    CoreModule,
   ],
 })
 export class LoginModule {}
