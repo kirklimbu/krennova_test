@@ -14,6 +14,29 @@ body {
 
 /* You can add global styles to this file, and also import other style files */
 
+/* spinner for save button */
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  border-top-color: #000000;
+  animation: spinner 0.8s linear infinite;
+}
+
 /* Navbar */
 .navbar {
   background: #fff;
@@ -114,6 +137,13 @@ mat-toolbar {
   place-items: center;
 }
 
+/* .form-title {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 120px;
+}
+ */
 .client-card {
   padding: 2rem;
   min-width: 40rem;
@@ -127,12 +157,12 @@ mat-toolbar {
 }
 
 .datepicker__input {
-  width: 70%;
+  width: 85%;
 }
 
 .card-actions {
   // padding: ;
-  margin: 1rem 5.5rem 0 0;
+  // margin: 1rem 5.5rem 0 0;
 }
 
 .divider {
@@ -144,4 +174,15 @@ mat-toolbar {
   display: grid;
   place-items: center;
   padding: .5rem;
+}
+
+.isToday-checkbox {
+  display: grid;
+  place-items: center;
+  margin-top: 0;
+}
+
+/* breadcrumb */
+.xng-breadcrumb-trail {
+  margin-top: .5rem
 }

@@ -1,3 +1,4 @@
+import { LoginService } from "./../../../features/login/services/login.service";
 import { SidenavService } from "./../sidenav/services/sidenav.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -12,7 +13,8 @@ export class NavbarComponent implements OnInit {
   title: string; // for navBar title
   constructor(
     /* this value toggles our sidenav html=> sidenav.toggle() */
-    public sidenav: SidenavService
+    public sidenav: SidenavService,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -20,5 +22,9 @@ export class NavbarComponent implements OnInit {
   }
   onChangeIcon() {
     this.toggleActive = !this.toggleActive;
+  }
+
+  onLogout() {
+    this.loginService.logout();
   }
 }

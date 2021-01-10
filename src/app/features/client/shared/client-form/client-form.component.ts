@@ -1,3 +1,4 @@
+import { ToastrService } from "ngx-toastr";
 import { finalize } from "rxjs/operators";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Component, Inject, OnInit } from "@angular/core";
@@ -6,7 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Router } from "@angular/router";
 import { DateFormatter } from "angular-nepali-datepicker";
 import { Client } from "src/app/core/models/client";
-import { PopupModalComponent } from "src/app/shared/popup-modal/popup-modal.component";
+import { PopupModalComponent } from "src/app/shared/components/popup-modal/popup-modal.component";
 import { ClientService } from "../../services/client.service";
 
 @Component({
@@ -23,7 +24,8 @@ export class ClientFormComponent implements OnInit {
   mode = "add";
   customerId: number;
 
-  isToday = true;
+  isItToday = true;
+  hideRegDate = false;
   dobDateFormatter: DateFormatter = (date) => {
     return `${date.year} / ${date.month + 1} / ${date.day} `;
   };
@@ -66,32 +68,56 @@ export class ClientFormComponent implements OnInit {
   ];
   toppings: any;
 
+  /* fake response */
+  res = {
+    id: 12,
+    name: "test 33",
+    address: "Damak 4",
+    mobile: "9858748586",
+    email: "test@gmail.com",
+    isToday: true,
+    dob: "2077/06/02",
+    visitDateBs: "2077/09/25",
+    visitType: {
+      id: 1,
+      type: "type3",
+    },
+  };
+  /* fake response end */
   constructor(
     private formBuilder: FormBuilder,
     private clientService: ClientService,
     private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
     private router: Router,
     public dialogRef: MatDialogRef<ClientFormComponent>,
     @Inject(MAT_DIALOG_DATA) private modalData: any
   ) {}
 
   ngOnInit() {
-    console.log(this.modalData);
     this.mode = this.modalData.mode;
     this.mode === "edit" ? this.fetchCustomerDetails() : null;
     this.buildCustomerForm();
   }
 
   fetchCustomerDetails() {
+    this.client = this.res;
+    // this.isItToday = this.client.isToday;
     this.spinner.show();
     this.customerId = this.modalData.customerDetails.id;
     this.clientService
       .getCustomerDetail(this.customerId)
       .pipe(finalize(() => this.spinner.hide()))
-      .subscribe((res: any) => {
-       /* data STARRT FROM  HERE */
-      })
-
+      .subscribe(
+        (res: any) => {
+          /* data STARRT FROM  HERE */
+        },
+        (err) => {
+          err.error.message === err.error.message
+            ? this.toastr.error(err.error.message)
+            : this.toastr.error("Error fetching customer details.");
+        }
+      );
   }
 
   buildCustomerForm() {
@@ -103,6 +129,7 @@ export class ClientFormComponent implements OnInit {
         mobile: [this.client.mobile],
         address: [this.client.address],
         dob: [this.client.dob],
+        isToday: [this.client.isToday],
         regDateBs: [this.client.regDateBs],
         email: [this.client.email],
         visitType: [this.client.visitType],
@@ -117,6 +144,8 @@ export class ClientFormComponent implements OnInit {
         mobile: [this.client.mobile],
         address: [this.client.address],
         dob: [this.client.dob],
+        isToday: [this.client.isToday],
+
         regDateBs: [this.client.regDateBs],
         email: [this.client.email],
         visitType: [this.client.visitType],
@@ -124,7 +153,7 @@ export class ClientFormComponent implements OnInit {
       });
     }
   }
-  createCustomer() {
+  /* createCustomer() {
     this.clientService.createCustomer(this.customerForm.value).subscribe(
       (data) => {
         console.log("subscribe vitra daddfa" + data);
@@ -133,11 +162,13 @@ export class ClientFormComponent implements OnInit {
         // this.customerForm = data;?console.log('dafsdfsa' + this.customerForm);
         // tslint:disable-next-line:no-shadowed-variable
       },
-      (error) => {
-        console.log(" error vitra xu" + error);
+      (err) => {
+        err.error.message === err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error adding new customer.");
       }
     );
-  }
+  } */
 
   onCancel() {
     console.log("cancel cliked");
@@ -146,6 +177,20 @@ export class ClientFormComponent implements OnInit {
 
   onSave() {
     console.log(this.customerForm.value);
-    this.dialogRef.close(this.customerForm.value);
+    this.clientService.createCustomer(this.customerForm.value).subscribe(
+      (res) => {
+        this.dialogRef.close(res);
+      },
+      (err) => {
+        err.error.message === err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error  saving customer details.");
+      }
+    );
+    // this.dialogRef.close(this.customerForm.value);
+  }
+
+  onDayCheck(e) {
+    this.isItToday = e.checked;
   }
 }

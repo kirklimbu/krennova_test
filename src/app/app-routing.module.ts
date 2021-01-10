@@ -15,7 +15,7 @@ const routes: Routes = [
       import("./features/dashboard/dashboard.module").then(
         (m) => m.DashboardModule
       ),
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
   },
 
   {

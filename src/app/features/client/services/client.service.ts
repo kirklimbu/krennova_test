@@ -20,16 +20,23 @@ export class ClientService {
       })
     );
   }
+  getCustomerList() {
+    return this.http.get(`${this.API_URL}auth/customer/list`).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
   createCustomer(customer) {
     console.log("create service claled");
 
     console.log(JSON.stringify(customer));
-    return this.http
-      .post(`${this.API_URL}auth/customer/save`, { ...customer })
-      .pipe(
-        catchError((err) => {
-          return throwError(err);
-        })
-      );
+    return this.http.post(`${this.API_URL}letter/save`, { ...customer }).pipe(
+      catchError((err) => {
+        console.log("error 1 fdgdfgdffsdfsf");
+
+        return throwError(err);
+      })
+    );
   }
 }

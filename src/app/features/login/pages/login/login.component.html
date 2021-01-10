@@ -37,7 +37,7 @@
                   <mat-form-field>
                     <mat-label>Username </mat-label>
                     <mat-hint align="end">Enter username</mat-hint>
-                    <input matInput required formControlName="username" />
+                    <input matInput required formControlName="userName" />
 
                     <mat-error *ngIf="loginForm.invalid">
                       {{ getUsernameErrorMsg() }}
@@ -54,7 +54,7 @@
                     <input
                       appOnreturn
                       matInput
-                      formControlName="password"
+                      formControlName="passWord"
                       [type]="hide ? 'password' : 'text'"
                     />
                     <button
@@ -84,6 +84,7 @@
                   type="button"
                   class="btn btn-primary mx-auto w-100"
                   [disabled]="!loginForm.valid"
+                  [class.spinner]="loading"
                   (click)="onLogin()"
                 >
                   Login

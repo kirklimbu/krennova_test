@@ -37,6 +37,7 @@
     "popper.js": "^1.16.0",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
+    "xng-breadcrumb": "^6.5.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

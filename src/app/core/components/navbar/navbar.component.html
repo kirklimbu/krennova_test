@@ -41,7 +41,7 @@
           >Home</a
         >
       </li> -->
-     <!--  <li class="nav-item">
+      <!--  <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
@@ -65,7 +65,7 @@
           >Enter POV</a
         >
       </li> -->
-     <!--  <li class="nav-item">
+      <!--  <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
@@ -99,7 +99,7 @@
     </button>
     <button mat-menu-item>
       <mat-icon color="warn">power_settings_new</mat-icon>
-      <span class="logout">Logout</span>
+      <span class="logout" (click)="onLogout()">Logout</span>
     </button>
   </mat-menu>
 </nav>

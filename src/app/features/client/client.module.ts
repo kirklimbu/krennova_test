@@ -1,3 +1,4 @@
+import {BreadcrumbModule} from 'xng-breadcrumb';
 import { CoreModule } from "src/app/core/core.module";
 // angular
 import { NgModule } from "@angular/core";
@@ -22,9 +23,10 @@ import { NpDatepickerModule } from "angular-nepali-datepicker";
     ReactiveFormsModule,
     NgbModule,
     SharedModule,
-    // CoreModule,
+    CoreModule,
     NpDatepickerModule,
     FormsModule,
+    BreadcrumbModule,
   ],
 })
 export class ClientModule {}

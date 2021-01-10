@@ -5,8 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl: "http://localhost:8082/ganapati",
-  apiUrl: 'http://18.219.113.193:8084/nnc/api/',
-  // apiUrl: 'http://18.219.113.193:8084/dental/api/',
+  apiUrl: 'http://18.219.113.193:8086/dental/api/',
 };
 
 /*

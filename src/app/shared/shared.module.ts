@@ -11,13 +11,13 @@ import { TableTopBarComponent } from "./components/table-top-bar/table-top-bar.c
 import { JwtModule } from "@auth0/angular-jwt";
 import { NpDatepickerModule } from "angular-nepali-datepicker";
 import { FormsModule } from "@angular/forms";
-import { ToastrModule } from "ngx-toastr";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { HttpTokenInterceptorService } from "../core/http-interceptor/http-token/http-token-interceptor.service";
+
 import { TableActionButtonsComponent } from "./components/table-action-buttons/table-action-buttons.component";
 import { FormGroupComponent } from "./components/form-group/form-group.component";
 import { SaveCancelButtonsComponent } from "./components/save-cancel-buttons/save-cancel-buttons.component";
-import { PopupModalComponent } from './popup-modal/popup-modal.component';
+import { PopupModalComponent } from "./components/popup-modal/popup-modal.component";
+import { BreadcurmbComponent } from "./components/breadcurmb/breadcurmb.component";
+import { BreadcrumbModule } from "xng-breadcrumb";
 
 const DECLARATIONS = [
   ActionButtonsComponent,
@@ -26,9 +26,11 @@ const DECLARATIONS = [
   TableActionButtonsComponent,
   FormGroupComponent,
   SaveCancelButtonsComponent,
+  PopupModalComponent,
+  BreadcurmbComponent,
 ];
 @NgModule({
-  declarations: [...DECLARATIONS, PopupModalComponent, ],
+  declarations: [...DECLARATIONS],
   imports: [
     CommonModule,
     MaterialModule,
@@ -36,32 +38,8 @@ const DECLARATIONS = [
     FormsModule,
     NgbModule,
     CoreModule,
-    ToastrModule.forRoot({
-      timeOut: 7000,
-      positionClass: "toast-bottom-right",
-      autoDismiss: true,
-      closeButton: true,
-      progressBar: true,
-      progressAnimation: "increasing",
-    }),
-    JwtModule.forRoot({
-      config: {
-        // ...
-        tokenGetter: () => {
-          return localStorage.getItem("token");
-        },
-        throwNoTokenError: true,
-      },
-    }),
+    BreadcrumbModule,
   ],
   exports: [...DECLARATIONS],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpTokenInterceptorService,
-      multi: true,
-    },
-    ConnectorDirective,
-  ],
 })
 export class SharedModule {}
