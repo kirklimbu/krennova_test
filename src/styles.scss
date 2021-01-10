@@ -27,6 +27,7 @@ body {
 .content-wrapper {
   padding: 30px;
 }
+
 .sidenav {
   background: rgb(224, 228, 230);
   grid-column: 1 / 2;
@@ -37,15 +38,18 @@ body {
   min-width: 220px;
   box-shadow: 0 8px 6px -6px black;
 }
+
 .sidenav .logo-sn a {
   display: block;
   padding: 17px 0;
 }
+
 .logo-sn img {
   display: grid;
   max-width: 25px;
   align-items: center;
 }
+
 .main-content {
   background: rgb(221, 212, 209);
   grid-column: 2 / 4;
@@ -71,10 +75,12 @@ mat-icon {
   border-bottom: red;
   color: red;
 }
+
 mat-icon .power_settings_new:hover {
   border-bottom: red;
   color: red;
 }
+
 .mat-table {
   width: 100%;
   padding-right: 0;
@@ -85,6 +91,7 @@ mat-icon .power_settings_new:hover {
   gap: 0.25rem;
   grid-auto-flow: column;
 }
+
 mat-toolbar {
   display: flex;
   flex-direction: column;
@@ -112,14 +119,17 @@ mat-toolbar {
   min-width: 40rem;
   width: 40rem;
 }
+
 .nep-date-picker {
   border: 0;
   width: 75%;
   margin-top: 1rem;
 }
+
 .datepicker__input {
   width: 70%;
 }
+
 .card-actions {
   // padding: ;
   margin: 1rem 5.5rem 0 0;
@@ -128,4 +138,10 @@ mat-toolbar {
 .divider {
   margin-top: 0;
   margin-bottom: 2rem;
+}
+
+.save-cancel-buttons {
+  display: grid;
+  place-items: center;
+  padding: .5rem;
 }

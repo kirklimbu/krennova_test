@@ -13,19 +13,23 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  getClientList() {
-    return this.http.get(`${this.API_URL}customers`).pipe(
+  getCustomerDetail(id?: number) {
+    return this.http.get(`${this.API_URL}auth/customer/form?id=${id}`).pipe(
       catchError((err) => {
         return throwError(err);
       })
     );
   }
   createCustomer(customer) {
+    console.log("create service claled");
+
     console.log(JSON.stringify(customer));
-    return this.http.post(`${this.API_URL}customer/save`, { ...customer }).pipe(
-      catchError((err) => {
-        return throwError(err);
-      })
-    );
+    return this.http
+      .post(`${this.API_URL}auth/customer/save`, { ...customer })
+      .pipe(
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
   }
 }

@@ -64,7 +64,7 @@ export class ClientComponent implements OnInit {
       },
     },
     {
-      id: 1,
+      id: 13,
       name: "test 2",
       address: "Damak 6",
       mobile: "9858748586",
@@ -75,7 +75,7 @@ export class ClientComponent implements OnInit {
       },
     },
     {
-      id: 1,
+      id: 11,
       name: "test 4",
       address: "Damak 2",
       mobile: "9858748586",
@@ -86,7 +86,7 @@ export class ClientComponent implements OnInit {
       },
     },
     {
-      id: 1,
+      id: 12,
       name: "test 33",
       address: "Damak 4",
       mobile: "9858748586",
@@ -117,7 +117,7 @@ export class ClientComponent implements OnInit {
     this.spinner.show();
     /* START FROM HERE */
     this.clientListDataSource$ = this.clientService
-      .getClientList()
+      .getCustomerDetail()
       .pipe(finalize(() => this.spinner.hide()));
     (err) => {
       // this.toastr.error(err.message);
@@ -143,20 +143,23 @@ export class ClientComponent implements OnInit {
     console.log();
   }
 
-  onAdd() {
-    console.log("add clicked");
-
+  onAdd(mode?: string, customer?: Client) {
     // this.router.navigate(['/dental/client/add-client'])
     const dialogRef = this.dialog.open(ClientFormComponent, {
       disableClose: true,
+
       // width: "450px",
-      // data: {},
+      data: {
+        mode: mode,
+        customerDetails: customer,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed " + result);
-      if (result === "Yes") {
+      if (result) {
         console.log("yes");
+        this.clientService.createCustomer(result);
       } else {
         console.log("no");
       }
