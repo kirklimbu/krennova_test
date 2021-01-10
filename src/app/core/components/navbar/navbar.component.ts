@@ -9,6 +9,7 @@ import { Component, OnInit } from "@angular/core";
 export class NavbarComponent implements OnInit {
   /* props */
   toggleActive: boolean = false;
+  title: string; // for navBar title
   constructor(
     /* this value toggles our sidenav html=> sidenav.toggle() */
     public sidenav: SidenavService

@@ -10,6 +10,9 @@ import { SidenavService } from "../services/sidenav.service";
 })
 export class SidenavComponent implements OnInit {
   /* props */
+
+  isBill: boolean;
+  isSMS: boolean;
   @ViewChild("drawer", { static: true }) sidenav: MatSidenav;
 
   constructor(private sidenavService: SidenavService) {}

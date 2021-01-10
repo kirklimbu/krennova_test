@@ -1,92 +1,108 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Client } from 'src/app/core/models/client';
-import { ApiService } from 'src/app/_services/api.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { DateFormatter } from "angular-nepali-datepicker";
+import { Client } from "src/app/core/models/client";
+import { ClientService } from "../../services/client.service";
 
 @Component({
-  selector: 'app-client-form',
-  templateUrl: './client-form.component.html',
-  styleUrls: ['./client-form.component.scss']
+  selector: "app-client-form",
+  templateUrl: "./client-form.component.html",
+  styleUrls: ["./client-form.component.scss"],
 })
 export class ClientFormComponent implements OnInit {
-
   public customerForm: FormGroup;
-  client: Client;
+  client: Client = new Client();
+  visitDateBs: string;
+  dob;
+  regDate;
 
+  isToday=true
+  dobDateFormatter: DateFormatter = (date) => {
+    return `${date.year} / ${date.month + 1} / ${date.day} `;
+  };
+  regDateFormatter: DateFormatter = (date) => {
+    return `${date.year} / ${date.month + 1} / ${date.day} `;
+  };
 
-  // toppingList: string[] = ['acid etching', 'adhesion', 'adhesive', 'adjunctive', 'alloplastic', 'allogenic'];
-  // tslint:disable-next-line:max-line-length
-  toppingList: [{ id: number; type: string }, { id: number; type: string }, { id: number; type: string }, { id: number; type: string }, { id: number; type: string }, { id: number; type: string }] = [
+  toppingList: [
+    { id: number; type: string },
+    { id: number; type: string },
+    { id: number; type: string },
+    { id: number; type: string },
+    { id: number; type: string },
+    { id: number; type: string }
+  ] = [
     {
-      'id': 1,
-      'type': 'type-A'
+      id: 1,
+      type: "type-A",
     },
     {
-      'id': 2,
-      'type': 'type-B'
+      id: 2,
+      type: "type-B",
     },
     {
-      'id': 3,
-      'type': 'type-C'
+      id: 3,
+      type: "type-C",
     },
     {
-      'id': 4,
-      'type': 'type-D'
+      id: 4,
+      type: "type-D",
     },
     {
-      'id': 5,
-      'type': 'type-E'
+      id: 5,
+      type: "type-E",
     },
     {
-      'id': 6,
-      'type': 'type-F'
-    }
+      id: 6,
+      type: "type-F",
+    },
   ];
   toppings: any;
 
-
-  constructor(private formBuilder: FormBuilder,
-              private apiService: ApiService,
-              private router: Router,
-  ) {
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private clientService: ClientService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.customerForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      mobile: ['', Validators.required],
-      address: ['', Validators.required],
-      purposeOfVisit: ['', Validators.required]
-    });
+    this.buildCustomerForm();
   }
 
-
+  buildCustomerForm() {
+    this.customerForm = this.formBuilder.group({
+      name: [this.client.name],
+      mobile: [this.client.mobile],
+      address: [this.client.address],
+      dob: [this.client.dob],
+      regDateBs: [this.client.regDateBs],
+      email: [this.client.email],
+      visitType: [this.client.visitType],
+      visitDateBs: [this.client.visitDateBs],
+    });
+  }
   createCustomer() {
-    this.apiService.createNewCustomer(this.customerForm.value)
-      .subscribe(data => {
-        console.log('subscribe vitra daddfa' + data);
+    this.clientService.createCustomer(this.customerForm.value).subscribe(
+      (data) => {
+        console.log("subscribe vitra daddfa" + data);
         // this.customer = data;
-        this.router.navigate(['/customerlist']);
+        this.router.navigate(["/customerlist"]);
         // this.customerForm = data;?console.log('dafsdfsa' + this.customerForm);
         // tslint:disable-next-line:no-shadowed-variable
-      }, error => {
-        console.log(' error vitra xu' + error);
-      });
+      },
+      (error) => {
+        console.log(" error vitra xu" + error);
+      }
+    );
   }
 
   onCancel() {
+    console.log("cancel cliked");
 
   }
 
-  onlogin() {
-    this.apiService.login(this.customerForm.value)
-      .subscribe(data => {
-        window.alert('login successful');
-
-      }, exception => {
-        window.alert(exception);
-      });
+  onSave() {
+    console.log(this.customerForm.value);
   }
-
 }

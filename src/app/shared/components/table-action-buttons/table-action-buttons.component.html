@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center row">
+  <button
+    mat-button
+    color="warn"
+    *ngIf="enableEdit"
+    ngbTooltip="Edit"
+    (click)="onEdit()"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
+
+  <button
+    mat-button
+    color="accent"
+    *ngIf="enableDelete"
+    ngbTooltip="Delete"
+    (click)="onDelete()"
+  >
+    <mat-icon>delete_outline</mat-icon>
+  </button>
+  <button
+    mat-button
+    color="primary"
+    *ngIf="enableViewDetails"
+    ngbTooltip="Show Details"
+    (click)="onVerifyDetails()"
+  >
+    <mat-icon>details</mat-icon>
+  </button>
+</div>

@@ -1,20 +1,21 @@
 <div class="d-flex row">
-  <div class="col-2">
+  <div class="col top-bar-add">
     <button
-      mat-raised-button
-      ngbTooltip="Save"
-      (click)="onAdd()"
       *ngIf="enableAdd"
+      mat-icon-button
+      ngbTooltip="Add new customer"
+      color="warn"
+      align="end"
+      (click)="onAdd()"
     >
-      Create New
+      <mat-icon>add</mat-icon>
     </button>
   </div>
 
   <!-- /add button -->
 
   <!-- search -->
-
-  <div *ngIf="enableSearch" class="d-flex ml-auto mb-2 mr-1">
+  <!-- <div *ngIf="enableSearch" class="d-flex ml-auto mb-2 mr-1">
     <div
       class="mr-1 search__container"
       [class.search__container--expanded]="isSearchShowing"
@@ -27,14 +28,14 @@
     >
       <i class="fas fa-search"></i>
     </button>
-  </div>
+  </div> -->
 
   <!--/ search  -->
 </div>
 
 <!-- new table top bar items -->
 <mat-card-actions>
-  <div class="row top-bar-items">
+  <div class="row top-bar-search">
     <div class="col" *ngIf="enableStatus">
       <label>Select status</label>
       <select
@@ -80,7 +81,7 @@
     <button
       *ngIf="enableSearch"
       mat-icon-button
-      style="margin-top: 22px; margin-right: 4px"
+      style="margin-top: 28px; margin-right: 4px"
       (click)="onSearch()"
     >
       <mat-icon>search</mat-icon>

@@ -8,6 +8,8 @@ import { MaterialModule } from "../shared/material-lib/material/material.module"
 import { SidenavService } from "./components/sidenav/services/sidenav.service";
 import { SidenavComponent } from "./components/sidenav/pages/sidenav.component";
 import { OnreturnDirective } from "./directives/onreturn.directive";
+import { ConnectorDirective } from "./directives/connector.directive";
+
 const DECLARATIONS: any[] = [
   // SidenavComponent,
   // QuickbarComponent,
@@ -16,6 +18,7 @@ const DECLARATIONS: any[] = [
   NavbarComponent,
   SidenavComponent,
   OnreturnDirective,
+  ConnectorDirective,
 ];
 @NgModule({
   declarations: [...DECLARATIONS],

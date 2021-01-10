@@ -2,105 +2,157 @@
   <!--grid row-->
   <div class="row">
     <!--grid col-->
-    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 m-auto">
-      <section fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-card fxFlex="500px" fxFlex.xs="100%">
-          <mat-card-title align="center">Enter Client Details</mat-card-title>
-          <form
-            [formGroup]="customerForm"
-            autocomplete="off"
-            novalidate
-            (ngSubmit)="createCustomer()"
-            fxLayout="column wrap"
-            fxLayoutAlign="center center"
-            fxLayoutGap="10px"
-          >
-            <mat-card-content>
-              <mat-form-field>
-                <input
-                  matInput
-                  type="text"
-                  placeholder=" Name"
-                  formControlName="name"
-                  id="name"
-                />
-                <mat-hint align="end">Enter client's full name</mat-hint>
-                <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
-                 <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error>-->
-              </mat-form-field>
+    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 card-container">
+      <!-- <mat-card class="client-card"> -->
+        <mat-card-title align="center"> Customer Form</mat-card-title>
+        <form [formGroup]="customerForm" autocomplete="off">
+          <mat-card-content>
+            <!-- first-row -->
+            <div class="row">
+              <!-- first-col -->
+              <div class="col">
+                <app-form-group [required]="true">
+                  <mat-form-field class="=full-width">
+                    <input
+                      matInput
+                      type="text"
+                      placeholder=" Name"
+                      formControlName="name"
+                      id="name"
+                      required
+                    />
+                    <mat-hint align="end">Enter Full Name</mat-hint>
+                    <!-- <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+                     <mat-error *ngIf="hasError('name', 'maxlength')">You have more than 60 characters</mat-error>-->
+                  </mat-form-field>
+                </app-form-group>
+              </div>
+              <!-- first-col end -->
+              <!--  second-col-->
+              <div class="col">
+                <app-form-group [required]="true">
+                  <mat-form-field class="=full-width">
+                    <input
+                      matInput
+                      type="text"
+                      placeholder=" Address"
+                      formControlName="address"
+                      required
+                    />
+                    <mat-hint align="end">Enter Address </mat-hint>
+                    <!--<mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
+  <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>-->
+                  </mat-form-field>
+                </app-form-group>
+              </div>
+              <!--  second-col end-->
+            </div>
+            <!-- first-row end -->
 
-              <mat-form-field>
-                <input
-                  matInput
-                  type="text"
-                  placeholder="Customer's address"
-                  formControlName="address"
-                />
-                <mat-hint align="end">Enter client's address </mat-hint>
-                <!--<mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
-                <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>-->
-              </mat-form-field>
-
-              <mat-form-field>
-                <input
-                  matInput
-                  type="number"
-                  placeholder="Customer's mobile number"
-                  formControlName="mobile"
-                />
-                <mat-hint align="end">Enter client's mobile number </mat-hint>
-                <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
-                <mat-error *ngIf="hasError('mobile', 'maxlength')">You have more than 100 characters</mat-error>-->
-              </mat-form-field>
-              <mat-form-field>
-                <mat-hint align="end"
-                  >Select client's purpose of visit
-                </mat-hint>
-
-                <mat-select
-                  placeholder="Purpose of visit"
-                  formControlName="purposeOfVisit"
-                  multiple
-                >
-                  <!-- <mat-select-trigger>{{toppings.value ? toppings.value[0] : ''}}
-                    &lt;!&ndash; <span *ngIf="toppings.value?.length > 1" class="example-additional-selection">
-                       (
-                       +{{toppings.value.length - 1}}
-                       {{toppings.value?.length === 2 ? 'other' : 'others'}}
-                       )
-                     </span>&ndash;&gt;
-                   </mat-select-trigger>-->
-
-                  <mat-option
-                    *ngFor="let topping of toppingList"
-                    [value]="topping"
-                    >{{ topping.type }}</mat-option
+            <!-- second-row -->
+            <div class="row">
+              <!-- first col -->
+              <div class="col">
+                <app-form-group [required]="true">
+                  <mat-form-field class="=full-width">
+                    <input
+                      matInput
+                      type="number"
+                      placeholder=" Mobile "
+                      formControlName="mobile"
+                      required
+                    />
+                    <mat-hint align="end">Enter Mobile Number </mat-hint>
+                    <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
+        <mat-error *ngIf="hasError('mobile', 'maxlength')">You have more than 100 characters</mat-error>-->
+                  </mat-form-field>
+                </app-form-group>
+              </div>
+              <!-- first col end -->
+              <!-- second col  -->
+              <div class="col">
+                <app-form-group>
+                  <mat-form-field class="=full-width">
+                    <input
+                      matInput
+                      type="text"
+                      placeholder=" Email"
+                      formControlName="email"
+                      id="lname"
+                      fxlayoutalign="column"
+                    />
+                    <mat-hint align="end">Enter e-mail Address</mat-hint>
+                    <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
+                    >Last Name is required</mat-error
                   >
-                </mat-select>
-              </mat-form-field>
-            </mat-card-content>
+                  <mat-error *ngIf="hasError('wardNum', 'maxlength')"
+                    >Enter last name</mat-error
+                  > -->
+                  </mat-form-field>
+                </app-form-group>
+              </div>
+              <!-- second col end -->
+            </div>
+            <!-- second-row end -->
 
-            <mat-card-actions align="center">
-              <button
-                mat-raised-button
-                color="primary"
-                [disabled]="!customerForm.valid"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                mat-raised-button
-                color="warn"
-                (click)="onCancel()"
-              >
-                Cancel
-              </button>
-            </mat-card-actions>
-          </form>
-        </mat-card>
-        <hr />
-      </section>
+            <!-- third-row -->
+            <div class="row">
+              <!-- first-col -->
+              <!-- dob -->
+              <div class="col nep-date-picker">
+                <app-form-group>
+                  <mat-label class="text-muted">D.O.B</mat-label>
+                  <np-datepicker
+                    class="form-group"
+                    inputClass="form-control"
+                    language="en"
+                    [(ngModel)]="dob"
+                    formControlName="dob"
+                    [dateFormatter]="dobDateFormatter"
+                  ></np-datepicker>
+                  <blockquote class="text-muted small text-left">
+                    Select D.O.B
+                  </blockquote>
+                </app-form-group>
+              </div>
+              <!-- dob end -->
+              <!-- first-col end -->
+
+              <!-- second-col -->
+              <div class="col nep-date-picker">
+                <app-form-group>
+                  <mat-label class="text-muted">Reg Date</mat-label>
+                  <np-datepicker
+                    class="form-group"
+                    inputClass="form-control"
+                    language="en"
+                    formControlName="regDateBs"
+                    [(ngModel)]="regDate"
+                    [dateFormatter]="regDateFormatter"
+                  ></np-datepicker>
+                  <blockquote class="text-muted small text-left">
+                    Select Registration Date
+                  </blockquote>
+                </app-form-group>
+              </div>
+              <!-- second-col end -->
+            </div>
+            <!-- third-row end -->
+          </mat-card-content>
+
+          <div class="row">
+            <div class="col card-actions">
+              <mat-card-actions>
+                <app-save-cancel-buttons
+                  (save)="onSave()"
+                  (cancel)="onCancel()"
+                ></app-save-cancel-buttons>
+              </mat-card-actions>
+            </div>
+          </div>
+        </form>
+      <!-- </mat-card> -->
+      <hr />
     </div>
     <!--grid col-->
   </div>

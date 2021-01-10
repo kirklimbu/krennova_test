@@ -11,18 +11,20 @@ import { HttpClientModule } from "@angular/common/http";
 import { PovListComponent } from "./_components/pov-list/pov-list.component";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgxSpinnerComponent } from "./shared/components/ngx-spinner/ngx-spinner.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent, PovListComponent, NgxSpinnerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxPrintModule,
     BrowserAnimationsModule,
-
     HttpClientModule,
     ReactiveFormsModule,
+
     NgxSpinnerModule,
+    NgxPrintModule,
+    NgbModule,
   ],
   providers: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

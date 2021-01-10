@@ -1,18 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
 
 html,
 body {
-  // margin: 0;
+  margin: 0;
   height: 100%;
   min-height: 100vh;
   font-family: system-ui, Roboto, "Helvetica Neue", sans-serif;
   display: grid;
   grid-template: auto 1fr auto / auto;
 }
-/* .content-wrapper {
-  display: grid;
-  grid-template-columns: minmax(150px, 25%) 1fr;
-} */
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -60,9 +58,74 @@ mat-icon {
 
 .sidenav-items a:hover {
   // color: rgb(4, 129, 212);
-  color: #caf4c2;
+  // color: #caf4c2;
+  // color: #0469a7
+  color: #28b0de;
 }
 
 .sidenav-items a:active {
   background-color: #69f0ae;
+}
+
+.logout:hover {
+  border-bottom: red;
+  color: red;
+}
+mat-icon .power_settings_new:hover {
+  border-bottom: red;
+  color: red;
+}
+.mat-table {
+  width: 100%;
+  padding-right: 0;
+}
+
+.top-bar-search {
+  display: grid;
+  gap: 0.25rem;
+  grid-auto-flow: column;
+}
+mat-toolbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-bar-add {
+  display: grid;
+  place-items: end;
+  margin-bottom: 0.25rem;
+  float: right;
+}
+
+.full-width {
+  width: 100%;
+  // padding: 4rem;
+}
+
+.card-container {
+  display: grid;
+  place-items: center;
+}
+
+.client-card {
+  padding: 2rem;
+  min-width: 40rem;
+  width: 40rem;
+}
+.nep-date-picker {
+  border: 0;
+  width: 75%;
+  margin-top: 1rem;
+}
+.datepicker__input {
+  width: 70%;
+}
+.card-actions {
+  // padding: ;
+  margin: 1rem 5.5rem 0 0;
+}
+
+.divider {
+  margin-top: 0;
+  margin-bottom: 2rem;
 }

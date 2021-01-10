@@ -1,5 +1,8 @@
+import { FormatDate } from "./../../../core/constants/format-date";
+import { CustomJs } from "src/app/shared/customjs/custom.js";
+import { NgxSpinnerService } from "ngx-spinner";
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { DateFormatter } from "angular-nepali-datepicker";
+import { DateFormatter, NepaliDate } from "angular-nepali-datepicker";
 
 @Component({
   selector: "app-table-top-bar",
@@ -14,7 +17,8 @@ export class TableTopBarComponent implements OnInit {
     },
   ];
   isSearchShowing = false;
-
+  customDate = new CustomJs();
+  formatDate = new FormatDate();
   @Input()
   enableSearch = true;
 
@@ -31,10 +35,10 @@ export class TableTopBarComponent implements OnInit {
   enableToDate = true;
 
   // @Input()
-  fromDate: string;
+  fromDate: any;
 
   @Input()
-  toDate: string;
+  toDate: any;
 
   @Input()
   status: string;
@@ -47,7 +51,7 @@ export class TableTopBarComponent implements OnInit {
   @Output()
   search = new EventEmitter<{ status: any; fromDate: any; toDate: any }>();
 
-  constructor() {}
+  constructor(private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {}
 
@@ -71,6 +75,22 @@ export class TableTopBarComponent implements OnInit {
       toDate: this.toDate,
     });
 
-    console.log("shared  search clicked" + JSON.stringify(this.fromDate));
+    console.log(this.status);
+    console.log(this.fromDate);
+    console.log(this.toDate);
+  }
+
+  fetchDefaultList() {
+    this.spinner.show();
+    const status = "P";
+
+    let toDate: NepaliDate = this.customDate.getCurrentDateBS();
+    toDate = this.customDate.getDatePickerObject(toDate); // converting to object to display in Datepicker
+    this.toDate = toDate; // assigning to Datepicker
+
+    let fromDate: NepaliDate = this.customDate.getBeforeAfterMonthDateBS(-1);
+    fromDate = this.customDate.getNepaliFunctionDateObject(fromDate);
+    this.fromDate = fromDate;
+    return;
   }
 }

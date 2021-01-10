@@ -13,8 +13,16 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
-  getCustomerList() {
+  getClientList() {
     return this.http.get(`${this.API_URL}customers`).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+  createCustomer(customer) {
+    console.log(JSON.stringify(customer));
+    return this.http.post(`${this.API_URL}customer/save`, { ...customer }).pipe(
       catchError((err) => {
         return throwError(err);
       })

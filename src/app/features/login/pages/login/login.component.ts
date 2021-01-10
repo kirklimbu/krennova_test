@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from "@angular/router";
 import { first } from "rxjs/operators";
-import { User } from 'src/app/core/models/user.model';
+import { User } from "src/app/core/models/user.model";
 import { LoginService } from "../../services/login.service";
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   user: User = new User();
   errorMsg: string;
   loading = false;
+  logo: File | null;
 
   constructor(
     private fb: FormBuilder,
