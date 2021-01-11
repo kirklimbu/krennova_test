@@ -4,7 +4,7 @@ import { FormatDate } from "./../../../../core/constants/format-date";
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 import { Router } from "@angular/router";
-import { Client } from "src/app/core/models/client";
+import { Customer } from "src/app/core/models/customer";
 import { ApiService } from "src/app/_services/api.service";
 import { finalize } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class InvoiceComponent implements OnInit {
   /* props */
   formatDate = new FormatDate();
-  clientListTable: Client[] = [];
+  clientListTable: Customer[] = [];
   invoiceListDataSource$: Observable<any>;
   clientListTableDataSource = new MatTableDataSource(this.clientListTable);
   displayedColumns: string[] = [
@@ -28,7 +28,7 @@ export class InvoiceComponent implements OnInit {
     "purposeOfVisit",
     "action",
   ];
-  client: Client;
+  client: Customer;
 
   constructor(
     private apiService: ApiService,

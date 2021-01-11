@@ -40,13 +40,7 @@
             <div class="col">
               <app-form-group [required]="true">
                 <mat-form-field class="=full-width">
-                  <input
-                    matInput
-                    type="text"
-                    placeholder=" Address"
-                    formControlName="address"
-                    required
-                  />
+                  <input matInput type="text" placeholder=" Address" required />
                   <mat-hint align="end">Enter Address </mat-hint>
                   <!--<mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
   <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>-->
@@ -133,7 +127,7 @@
                 <mat-checkbox
                   [style.margin]
                   class="example-margin small"
-                  formControlName="isToday"
+                  formControlName="today"
                   [(ngModel)]="isItToday"
                   (change)="onDayCheck($event)"
                   >Today</mat-checkbox

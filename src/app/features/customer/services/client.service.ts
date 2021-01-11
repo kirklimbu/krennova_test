@@ -13,6 +13,13 @@ export class ClientService {
 
   constructor(private http: HttpClient) {}
 
+  getCustomerForm() {
+    return this.http.get(`${this.API_URL}auth/customer/form`).pipe(
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
   getCustomerDetail(id?: number) {
     return this.http.get(`${this.API_URL}auth/customer/form?id=${id}`).pipe(
       catchError((err) => {
@@ -20,6 +27,7 @@ export class ClientService {
       })
     );
   }
+
   getCustomerList() {
     return this.http.get(`${this.API_URL}auth/customer/list`).pipe(
       catchError((err) => {
@@ -31,12 +39,14 @@ export class ClientService {
     console.log("create service claled");
 
     console.log(JSON.stringify(customer));
-    return this.http.post(`${this.API_URL}letter/save`, { ...customer }).pipe(
-      catchError((err) => {
-        console.log("error 1 fdgdfgdffsdfsf");
+    return this.http
+      .post(`${this.API_URL}auth/customer/save`, { ...customer })
+      .pipe(
+        catchError((err) => {
+          console.log("error 1 fdgdfgdffsdfsf");
 
-        return throwError(err);
-      })
-    );
+          return throwError(err);
+        })
+      );
   }
 }

@@ -1,8 +1,8 @@
 import { VisitType } from "./visit-type.model";
 
-export class Client {
+export class Customer {
   id: number;
-  isToday: boolean;
+  today: boolean;
   name: string;
   address: string;
   mobile: string;

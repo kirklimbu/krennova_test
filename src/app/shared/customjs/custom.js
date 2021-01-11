@@ -61,6 +61,7 @@ export class CustomJs {
 
   getStringFromDate(date) {
     //new Date() type to string
+    console.log(date);
     return (
       date.getFullYear() +
       "/" +

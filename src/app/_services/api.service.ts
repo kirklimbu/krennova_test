@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable, pipe, throwError} from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {catchError, retry} from 'rxjs/operators';
-import { Client } from '../core/models/client';
+import { Customer } from '../core/models/customer';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class ApiService {
   }
 
 
-  createNewCustomer(client: Client) {
+  createNewCustomer(client: Customer) {
     return this.http
       .post(
         this.baseUrl + 'clients',

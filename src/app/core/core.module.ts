@@ -39,11 +39,6 @@ const DECLARATIONS: any[] = [
     }),
   ],
   exports: [...DECLARATIONS],
-  providers: [
-    ToastrService,
-    AuthGuardService,
-    ConnectorDirective,
-
-  ],
+  providers: [ToastrService, AuthGuardService, ConnectorDirective],
 })
 export class CoreModule {}

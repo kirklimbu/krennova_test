@@ -1,24 +1,24 @@
-import {BreadcrumbModule} from 'xng-breadcrumb';
+import { BreadcrumbModule } from "xng-breadcrumb";
 import { CoreModule } from "src/app/core/core.module";
 // angular
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // third-party
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 // project
-import { ClientRoutingModule } from "./client-routing.module";
-import { ClientComponent } from "./pages/client/client.component";
-import { ClientFormComponent } from "./shared/client-form/client-form.component";
+import { CustomerRoutingModule } from "./customer-routing.module";
+import { CustomerComponent } from "./pages/customer/customer.component";
 import { MaterialModule } from "src/app/shared/material-lib/material/material.module";
 import { SharedModule } from "src/app/shared/shared.module";
 import { NpDatepickerModule } from "angular-nepali-datepicker";
+import { CustomerFormComponent } from "./shared/customer-form/customer-form.component";
 
 @NgModule({
-  declarations: [ClientComponent, ClientFormComponent],
+  declarations: [CustomerComponent, CustomerFormComponent],
   imports: [
     CommonModule,
-    ClientRoutingModule,
+    CustomerRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
     NgbModule,
@@ -28,5 +28,6 @@ import { NpDatepickerModule } from "angular-nepali-datepicker";
     FormsModule,
     BreadcrumbModule,
   ],
+  providers: [DatePipe],
 })
-export class ClientModule {}
+export class CustomerModule {}

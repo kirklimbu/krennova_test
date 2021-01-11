@@ -1,13 +1,10 @@
-import { ClientFormComponent } from "./../../shared/client-form/client-form.component";
 import { Router } from "@angular/router";
-import { Client } from "src/app/core/models/client";
+import { Customer } from "src/app/core/models/customer";
 import { ToastrService } from "ngx-toastr";
 import { NgxSpinnerService } from "ngx-spinner";
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material/table";
-import { LookupAddress } from "dns";
-import { AddressInfo } from "net";
-import { promise } from "protractor";
+
 import { ClientService } from "../../services/client.service";
 import { Observable } from "rxjs";
 import { finalize } from "rxjs/operators";
@@ -15,15 +12,15 @@ import { FormatDate } from "src/app/core/constants/format-date";
 // project
 import { CustomJs } from "src/app/shared/customjs/custom.js";
 import { DateFormatter } from "angular-nepali-datepicker";
-import { PopupModalComponent } from "src/app/shared/components/popup-modal/popup-modal.component";
 import { MatDialog } from "@angular/material";
+import { CustomerFormComponent } from "../../shared/customer-form/customer-form.component";
 
 @Component({
   selector: "app-client",
-  templateUrl: "./client.component.html",
-  styleUrls: ["./client.component.scss"],
+  templateUrl: "./customer.component.html",
+  styleUrls: ["./customer.component.scss"],
 })
-export class ClientComponent implements OnInit {
+export class CustomerComponent implements OnInit {
   /* props */
   clientListDataSource$: Observable<any>;
   formatDate = new FormatDate();
@@ -51,7 +48,7 @@ export class ClientComponent implements OnInit {
     return this.formatDate.getFormatDate(date);
   };
 
-  clientListDataSource: Client[];
+  clientListDataSource: Customer[];
   /* fake data end */
   constructor(
     private clientService: ClientService,
@@ -65,6 +62,8 @@ export class ClientComponent implements OnInit {
     this.fetchClientList();
   }
   fetchClientList() {
+    console.log("calling fetchcustomer list");
+
     this.spinner.show();
     this.clientListDataSource$ = this.clientService
       .getCustomerList()
@@ -75,29 +74,14 @@ export class ClientComponent implements OnInit {
     };
   }
 
-  startEdit(
-    name: any,
-    address:
-      | (() => promise.Promise<string>)
-      | string
-      | LookupAddress[]
-      | (() => { port: number; family: string; address: string })
-      | (() => AddressInfo)
-      | { port: number; family: string; address: string }
-      | HTMLElement,
-    mobile: any
-  ) {}
-
   onShowDetails() {}
   onSearch() {
     console.log();
   }
 
-  onAdd(mode?: string, customer?: Client) {
-    // this.router.navigate(['/dental/client/add-client'])
-    const dialogRef = this.dialog.open(ClientFormComponent, {
+  onAdd(mode?: string, customer?: Customer) {
+    const dialogRef = this.dialog.open(CustomerFormComponent, {
       disableClose: true,
-
       // width: "450px",
       data: {
         mode: mode,
@@ -107,7 +91,6 @@ export class ClientComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(result);
-      return; // remove on api intetration
       this.clientListDataSource$ = result; // if response has list
       this.fetchClientList(); //if response is not list -->  refreshing particular segment
       if (result) {
@@ -117,5 +100,12 @@ export class ClientComponent implements OnInit {
         console.log("no");
       }
     });
+  }
+
+  onViewDetails(customer: Customer) {
+    console.log(customer);
+    this.router.navigate(["/dental/client/visits"], {queryParams: { customerId: customer.id }});
+
+
   }
 }

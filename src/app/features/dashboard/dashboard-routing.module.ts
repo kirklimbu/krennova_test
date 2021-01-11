@@ -1,3 +1,4 @@
+import { VisitsModule } from "../customer/visits/visits.module";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
@@ -20,12 +21,13 @@ const routes: Routes = [
       {
         path: "client",
         loadChildren: () =>
-          import("./../client/client.module").then((m) => m.ClientModule),
+          import("../customer/customer.module").then((m) => m.CustomerModule),
         data: {
           // allowedRoles: [UserRoleType.ROLE_ALL],
         },
         // canActivate: [UserRoleGuardService],
       },
+
       {
         path: "sms",
         loadChildren: () =>
