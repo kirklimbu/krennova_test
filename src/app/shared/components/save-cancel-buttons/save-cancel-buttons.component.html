@@ -3,6 +3,7 @@
 <div class="d-flex align-items-center row save-cancel-buttons">
   <div class="ml-auto">
     <button
+      [class.spinner]="isSaveLoading"
       class="mr-2"
       mat-raised-button
       (click)="save.emit()"
@@ -13,6 +14,7 @@
     </button>
 
     <button
+      [class.spinner]="isCancelLoading"
       mat-raised-button
       (click)="cancel.emit()"
       color="info"

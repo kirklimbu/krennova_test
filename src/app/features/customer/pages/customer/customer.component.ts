@@ -7,7 +7,7 @@ import { MatTableDataSource } from "@angular/material/table";
 
 import { ClientService } from "../../services/client.service";
 import { Observable } from "rxjs";
-import { finalize } from "rxjs/operators";
+import { finalize, tap } from "rxjs/operators";
 import { FormatDate } from "src/app/core/constants/format-date";
 // project
 import { CustomJs } from "src/app/shared/customjs/custom.js";
@@ -67,14 +67,19 @@ export class CustomerComponent implements OnInit {
     this.spinner.show();
     this.clientListDataSource$ = this.clientService
       .getCustomerList()
-      .pipe(finalize(() => this.spinner.hide()));
+      .pipe(finalize(() => this.spinner.hide()))
+      .pipe(
+        tap((res) => {
+          console.log(res);
+          this.clientListDataSource = res;
+        })
+      );
     (err) => {
       this.toastr.error(err.message);
       this.spinner.hide();
     };
   }
 
-  onShowDetails() {}
   onSearch() {
     console.log();
   }
@@ -104,8 +109,8 @@ export class CustomerComponent implements OnInit {
 
   onViewDetails(customer: Customer) {
     console.log(customer);
-    this.router.navigate(["/dental/client/visits"], {queryParams: { customerId: customer.id }});
-
-
+    this.router.navigate(["/dental/customer/visits"], {
+      queryParams: { customerId: customer.id },
+    });
   }
 }

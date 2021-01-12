@@ -17,6 +17,9 @@ export class TableActionButtonsComponent implements OnInit {
   @Input()
   enableViewDetails = true;
 
+  @Input()
+  isEmpty = true;
+
   @Output()
   edit: EventEmitter<void> = new EventEmitter();
 

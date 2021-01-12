@@ -1,0 +1,142 @@
+import { VisitType } from "./../../../../../core/models/visit-type.model";
+import { VisitMain } from "./../../../../../core/models/visit-main.model";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Component, Inject, OnInit } from "@angular/core";
+import { VisitService } from "../../services/visit.service";
+import { NgxSpinnerService } from "ngx-spinner";
+import { ToastrService } from "ngx-toastr";
+import { ActivatedRoute, Router } from "@angular/router";
+import { finalize } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+
+@Component({
+  selector: "app-visit-main-form",
+  templateUrl: "./visit-main-form.component.html",
+  styleUrls: ["./visit-main-form.component.scss"],
+})
+export class VisitMainFormComponent implements OnInit {
+  /* props */
+  visitTypeList$: Observable<any>; //any lai VisitType ma change garne
+  visitTypeList: VisitType[] = [];
+  visitMain = new VisitMain();
+  visitMainForm: FormGroup;
+  mode = "add";
+  customerId: number;
+  visitMainId: number;
+
+  loading: boolean=false;
+
+  constructor(
+    private fb: FormBuilder,
+    private visitService: VisitService,
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
+    private route: ActivatedRoute,
+    public dialogRef: MatDialogRef<VisitMainFormComponent>,
+    @Inject(MAT_DIALOG_DATA) private modalData: any
+  ) {}
+
+  ngOnInit(): void {
+    this.mode = this.modalData.mode; // for add
+
+    this.mode === "add" ? this.fetchParamFromUrl() : this.fetchMainVisitForm();
+    this.buildVisitMainForm();
+  }
+
+  buildVisitMainForm() {
+    if (this.mode === "add") {
+      this.visitMainForm = this.fb.group({
+        customerId: [this.visitMain.customerId],
+        visitType: [this.visitMain.visitType],
+        remBal: [this.visitMain.remBal],
+        totalCost: [this.visitMain.totalCost],
+      });
+    } else {
+      this.visitMainForm = this.fb.group({
+        id: [this.visitMain.id],
+        customerId: [this.visitMain.customerId],
+        remBal: [this.visitMain.remBal],
+        totalCost: [this.visitMain.totalCost],
+        visitType: [this.visitMain.visitType],
+      });
+    }
+  }
+
+  fetchParamFromUrl() {
+    this.spinner.show();
+    this.route.queryParamMap.subscribe((params) => {
+      this.customerId = +params.get("customerId");
+      this.visitService
+        .getVisitMainFormValues(this.customerId)
+        .pipe(finalize(() => this.spinner.hide()))
+        .subscribe((res: any) => {
+          console.log(res);
+
+          this.visitMain = res.form;
+          this.visitTypeList = res.visitTypeList; //for drop down
+          this.buildVisitMainForm();
+        }),
+        (err) => {
+          err = err.error.message
+            ? this.toastr.error(err.error.message)
+            : this.toastr.error(
+                "Error fetching default visit main form values."
+              );
+          this.spinner.hide();
+        };
+    }),
+      (err) => {
+        err = err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error fetching param value.");
+        this.spinner.hide();
+      };
+  }
+
+  fetchMainVisitForm() {
+    let customerId = this.modalData?.customerDetails?.customerId;
+    let visitMainId = this.modalData?.customerDetails?.id;
+    this.visitService
+      .getVisitMainFormValuesForEdit(customerId, visitMainId)
+      .pipe(finalize(() => this.spinner.hide()))
+      .subscribe((res: any) => {
+        this.visitMain = res.form;
+        this.visitTypeList = res.visitTypeList;
+        this.buildVisitMainForm();
+      }),
+      (err) => {
+        err = err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error fetching  visit main form values.");
+        this.spinner.hide();
+      };
+  }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
+
+  onSave() {
+    this.loading = true;
+    this.visitService.saveVisitMainForm(this.visitMainForm.value).subscribe(
+      (res: any) => {
+        console.log(res);
+
+        this.loading = false;
+        this.dialogRef.close(res);
+        this.toastr.success(res.message);
+      },
+      (err) => {
+        err.error.message === err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error  saving visit details.");
+      }
+    );
+    return;
+  }
+  /* comparing the dropdown values & setting the selected value in edit form */
+  compareFn(optionOne: any, optionTwo: any): boolean {
+    return optionOne?.id === optionTwo?.id;
+  }
+}

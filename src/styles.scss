@@ -53,6 +53,7 @@ body {
 
 .sidenav {
   background: rgb(224, 228, 230);
+  // background: #d4f2a4;
   grid-column: 1 / 2;
   padding: 1rem 0 0.5rem 0;
   margin: 0.2rem 0.25rem 5rem 0.25rem;
@@ -75,6 +76,7 @@ body {
 
 .main-content {
   background: rgb(221, 212, 209);
+  // background: #75b5dd;
   grid-column: 2 / 4;
   min-height: 100vh;
 }

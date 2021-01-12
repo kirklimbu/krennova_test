@@ -1,4 +1,4 @@
-import { VisitsModule } from "../customer/visits/visits.module";
+import { VisitsModule } from "./../customer/visits/visits.module";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
@@ -10,7 +10,7 @@ const routes: Routes = [
     // home
     children: [
       {
-        path: "dashboard",
+        path: "home",
         loadChildren: () =>
           import("./../home/home.module").then((m) => m.HomeModule),
         data: {
@@ -19,7 +19,7 @@ const routes: Routes = [
         // canActivate: [UserRoleGuardService],
       },
       {
-        path: "client",
+        path: "customer",
         loadChildren: () =>
           import("../customer/customer.module").then((m) => m.CustomerModule),
         data: {
@@ -47,6 +47,16 @@ const routes: Routes = [
         // canActivate: [UserRoleGuardService],
       },
     ],
+  },
+  {
+    path: "",
+    pathMatch: "full",
+    redirectTo: "/dental/home", // change it to login page
+  },
+  {
+    path: "**",
+    pathMatch: "full",
+    redirectTo: "/dental/home", // change it to page 404
   },
 ];
 

@@ -10,7 +10,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  // imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild([
+      {
+        path: "",
+        component: MainVisitComponent,
+      },
+    ]),
+  ],
   exports: [RouterModule],
 })
 export class VisitsRoutingModule {}

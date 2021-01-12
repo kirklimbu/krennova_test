@@ -22,7 +22,7 @@
     mat-button
     color="primary"
     *ngIf="enableViewDetails"
-    ngbTooltip="Show Details"
+    ngbTooltip="{{ isEmpty ? 'Add Details' : 'Show Details' }}"
     (click)="onVerifyDetails()"
   >
     <mat-icon>visibility</mat-icon>

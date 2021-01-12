@@ -20,7 +20,11 @@
         <mat-icon align="end">person_add</mat-icon>
       </a> -->
       <!-- table top bar items -->
-      <app-table-top-bar [enableSearch]="true"></app-table-top-bar>
+      <app-table-top-bar
+        [enableSearch]="true"
+        (search)="onSearch()"
+        (add)="onAdd('add')"
+      ></app-table-top-bar>
       <!-- table top bar items end -->
     </div>
   </div>
@@ -98,6 +102,8 @@
             [enableDelete]="true"
             [enableEdit]="true"
             [enableViewDetails]="true"
+            (viewDetails)="onViewDetails(row)"
+            (edit)="onAdd('edit', row)"
           ></app-table-action-buttons>
         </td>
       </ng-container>

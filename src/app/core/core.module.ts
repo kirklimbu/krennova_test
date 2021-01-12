@@ -14,10 +14,6 @@ import { ToastrModule, ToastrService } from "ngx-toastr";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpTokenInterceptorService } from "../core/http-interceptor/http-token/http-token-interceptor.service";
 const DECLARATIONS: any[] = [
-  // SidenavComponent,
-  // QuickbarComponent,
-  // ContentWrapperComponent,
-  // PreloaderComponent,
   NavbarComponent,
   SidenavComponent,
   OnreturnDirective,

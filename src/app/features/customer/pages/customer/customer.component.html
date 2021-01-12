@@ -92,6 +92,7 @@
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button> -->
           <app-table-action-buttons
+            [isEmpty]="clientListDataSource.length == 0"
             [enableDelete]="true"
             [enableEdit]="true"
             (edit)="onAdd('edit', row)"

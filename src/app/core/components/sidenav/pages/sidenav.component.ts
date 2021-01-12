@@ -18,8 +18,6 @@ export class SidenavComponent implements OnInit {
   constructor(private sidenavService: SidenavService) {}
 
   ngOnInit(): void {
-    console.log(this.sidenav);
-
     this.sidenavService.setSidenav(this.sidenav);
   }
 }

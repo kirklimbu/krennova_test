@@ -1,4 +1,4 @@
-import { EventEmitter, Output } from "@angular/core";
+import { EventEmitter, Input, Output } from "@angular/core";
 import { Component, OnInit } from "@angular/core";
 
 @Component({
@@ -8,6 +8,11 @@ import { Component, OnInit } from "@angular/core";
 })
 export class SaveCancelButtonsComponent implements OnInit {
   /* props */
+
+  @Input()
+  isSaveLoading = false;
+  @Input()
+  isCancelLoading = false;
   @Output()
   save: EventEmitter<void> = new EventEmitter();
 

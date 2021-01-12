@@ -9,12 +9,5 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class HomeComponent implements OnInit {
   constructor(private spinner: NgxSpinnerService) {}
 
-  ngOnInit(): void {
-    console.log("calling spinner");
-    this.spinner.show();
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 5000);
-  }
+  ngOnInit(): void {}
 }

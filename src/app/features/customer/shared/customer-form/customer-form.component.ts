@@ -85,7 +85,6 @@ export class CustomerFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log(this.dobDateFormatter);
 
     this.mode = this.modalData.mode;
     this.mode === "edit" ? this.fetchCustomerDetails() : this.fetchFormValues();
@@ -110,16 +109,9 @@ export class CustomerFormComponent implements OnInit {
       .pipe(finalize(() => this.spinner.hide()))
       .subscribe(
         (res: any) => {
-          console.log(res);
           this.mode = "edit";
           this.client = res;
-          console.log(this.client.dob);
-          console.log(this.dob);
-
           this.dob = this.customDate.getDatePickerObject(this.client.dob);
-
-          console.log(this.dob);
-
           this.buildCustomerForm();
         },
         (err) => {
@@ -133,7 +125,7 @@ export class CustomerFormComponent implements OnInit {
 
   buildCustomerForm() {
     if (this.mode === "add") {
-      console.log("add form called");
+
 
       this.customerForm = this.formBuilder.group({
         name: [this.client.name],
@@ -147,7 +139,7 @@ export class CustomerFormComponent implements OnInit {
         visitDateBs: [this.client.visitDateBs], */
       });
     } else {
-      console.log("edit form called");
+
 
       this.customerForm = this.formBuilder.group({
         id: [this.client.id],
@@ -164,12 +156,12 @@ export class CustomerFormComponent implements OnInit {
   }
 
   onCancel() {
-    console.log("cancel cliked");
+
     this.dialogRef.close();
   }
 
   onSave() {
-    console.log(this.dob);
+
     let dob = this.customDate.getStringFromNepaliFunction(this.dob);
     this.customerForm.controls["dob"].setValue(dob);
 

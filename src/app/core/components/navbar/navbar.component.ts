@@ -17,9 +17,7 @@ export class NavbarComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.sidenav);
-  }
+  ngOnInit(): void {}
   onChangeIcon() {
     this.toggleActive = !this.toggleActive;
   }
