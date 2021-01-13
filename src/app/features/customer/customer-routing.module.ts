@@ -18,10 +18,6 @@ const routes: Routes = [
     },
     // canActivate: [UserRoleGuardService],
   },
-  /*  {
-    path: "add-customer",
-    component: CustomerFormComponent,
-  }, */
 ];
 
 @NgModule({

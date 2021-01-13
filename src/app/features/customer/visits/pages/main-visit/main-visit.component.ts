@@ -74,7 +74,14 @@ export class MainVisitComponent implements OnInit {
       };
   }
 
-  onViewDetails(data) {}
+  onViewDetails(visit) {
+    console.log(visit);
+    let type = visit.visitType.type;
+    let id = visit.id;
+    this.router.navigate(["/dental/customer/visits/detail"], {
+      queryParams: { type: type, visitMainId: id },
+    });
+  }
 
   onAdd(mode: string, customer?) {
     /* START BY CODE REFACTORING FROM HERE */
