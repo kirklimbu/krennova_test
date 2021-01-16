@@ -15,15 +15,15 @@
       <div class="row">
         <!-- first col -->
         <div class="col mb-5 mt-4">
-          <app-form-group [required]="true">
-            <mat-form-field appearance="fill">
-              <mat-label>Visit Type</mat-label>
-              <mat-select formControlName="visitType" [compareWith]="compareFn">
-                <mat-option *ngFor="let visit of visitTypeList" [value]="visit">
-                  {{ visit.type }}
-                </mat-option>
-              </mat-select>
-              <!-- <mat-hint align="end">Enter e-mail Address</mat-hint> -->
+          <app-form-group>
+            <mat-form-field>
+              <input
+                matInput
+                type="test"
+                placeholder=" Visit Type"
+                formControlName="name"
+                fxlayoutalign="column"
+              />
             </mat-form-field>
           </app-form-group>
         </div>

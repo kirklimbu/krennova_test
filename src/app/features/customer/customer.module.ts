@@ -1,3 +1,6 @@
+import { MainDepositModule } from "./visits/main-deposit/main-deposit.module";
+import { VisitDetailModule } from "./visits/visit-detail/visit-detail.module";
+import { VisitsModule } from "./visits/visits.module";
 import { BreadcrumbModule } from "xng-breadcrumb";
 import { CoreModule } from "src/app/core/core.module";
 // angular
@@ -13,9 +16,15 @@ import { MaterialModule } from "src/app/shared/material-lib/material/material.mo
 import { SharedModule } from "src/app/shared/shared.module";
 import { NpDatepickerModule } from "angular-nepali-datepicker";
 import { CustomerFormComponent } from "./shared/customer-form/customer-form.component";
+import { VisitTabContainerComponent } from "./visits/visit-tab-container/visit-tab-container.component";
 
+const DECLARATIONS = [
+  CustomerComponent,
+  CustomerFormComponent,
+  VisitTabContainerComponent,
+];
 @NgModule({
-  declarations: [CustomerComponent, CustomerFormComponent],
+  declarations: [...DECLARATIONS],
   imports: [
     CommonModule,
     CustomerRoutingModule,
@@ -27,7 +36,11 @@ import { CustomerFormComponent } from "./shared/customer-form/customer-form.comp
     NpDatepickerModule,
     FormsModule,
     BreadcrumbModule,
+    // VisitsModule,
+    VisitDetailModule,
+    MainDepositModule,
   ],
+  exports: [...DECLARATIONS],
   providers: [DatePipe],
 })
 export class CustomerModule {}

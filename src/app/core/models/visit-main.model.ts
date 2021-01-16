@@ -4,5 +4,6 @@ export class VisitMain {
   customerId: number;
   remBal: number;
   totalCost: number;
-  visitType: VisitType;
+  name:string
+  // visitType: VisitType;
 }

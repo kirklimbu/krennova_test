@@ -191,10 +191,16 @@ mat-toolbar {
 
 /* popup/modal table */
 .add-table-row {
-  display: inline-table
+  display: inline-table;
 }
 
 .modal-table {
   width: 32rem;
   margin-top: 2rem;
 }
+
+.tab-bar {
+  margin: 2rem 0 2rem 0;
+}
+
+

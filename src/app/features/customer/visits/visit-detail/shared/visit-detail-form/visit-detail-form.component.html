@@ -8,7 +8,7 @@
       <!-- <mat-card class="client-card"> UNCOMMENT IF IT IS NOT MODAL-->
       <form [formGroup]="visitDetailForm" autocomplete="off">
         <mat-card-title align="center">
-          <h3 class="form-title">Visit Detail {{ mode }} Form</h3>
+          <h3 class="form-title">Visit Detail {{ mode | titlecase }} Form</h3>
           <!--  <button mat-icon-button class="add-visit">
             <mat-icon>add</mat-icon>
           </button> -->
@@ -47,9 +47,9 @@
                   [(ngModel)]="visitDateBs"
                   [dateFormatter]="visitDateFormatter"
                 ></np-datepicker>
-                <blockquote class="text-muted small text-left">
+                <!-- <blockquote class="text-muted small text-left">
                   Select Registration Date
-                </blockquote>
+                </blockquote> -->
               </app-form-group>
             </div>
             <!-- second-col end -->
@@ -69,7 +69,7 @@
                     id="lname"
                     fxlayoutalign="column"
                   />
-                  <mat-hint align="end">Enter Doctor Name</mat-hint>
+                  <!-- <mat-hint align="end">Enter Doctor Name</mat-hint> -->
                   <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
                     >Last Name is required</mat-error
                   >
@@ -92,7 +92,7 @@
                     id="lname"
                     fxlayoutalign="column"
                   />
-                  <mat-hint align="end">Enter Next visit </mat-hint>
+                  <!-- <mat-hint align="end">Enter Next visit </mat-hint> -->
                   <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
                     >Last Name is required</mat-error
                   >
@@ -139,16 +139,24 @@
                 >
                   <td>
                     <app-form-group [required]="true">
-                      <mat-form-field class="=full-width">
-                        <input
-                          matInput
-                          type="text"
-                          placeholder=" Item "
-                          formControlName="item"
-                        />
-                        <mat-hint align="end">Enter Item Name </mat-hint>
-                        <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
-              <mat-error *ngIf="hasError('mobile', 'maxlength')">You have more than 100 characters</mat-error>-->
+                      <mat-form-field
+                        appearance="fill"
+                        class="modal-mat-select"
+                      >
+                        <mat-label>Visit Type</mat-label>
+                        <mat-select
+                          style="padding: 0"
+                          formControlName="visitType"
+                          [compareWith]="compareFn"
+                        >
+                          <mat-option
+                            *ngFor="let visit of visitTypeList"
+                            [value]="visit"
+                          >
+                            {{ visit.type }}
+                          </mat-option>
+                        </mat-select>
+                        <!-- <mat-hint align="end">Enter e-mail Address</mat-hint> -->
                       </mat-form-field>
                     </app-form-group>
                   </td>
@@ -162,7 +170,7 @@
                           placeholder=" Amount "
                           formControlName="amount"
                         />
-                        <mat-hint align="end">Enter Item Amount </mat-hint>
+                        <!-- <mat-hint align="end">Enter Item Amount </mat-hint> -->
                         <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
               <mat-error *ngIf="hasError('mobile', 'maxlength')">You have more than 100 characters</mat-error>-->
                       </mat-form-field>
@@ -178,7 +186,9 @@
                       mat-icon-button
                       class="add-table-row"
                     >
-                      <mat-icon color="warn" style="display: inline-table"
+                      <mat-icon
+                        color="warn"
+                        style="display: inline-table; margin-top: 1.5rem"
                         >delete_outline</mat-icon
                       >
                     </button>

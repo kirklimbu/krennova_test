@@ -17,15 +17,14 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 })
 export class VisitMainFormComponent implements OnInit {
   /* props */
-  visitTypeList$: Observable<any>; //any lai VisitType ma change garne
-  visitTypeList: VisitType[] = [];
+
   visitMain = new VisitMain();
   visitMainForm: FormGroup;
   mode = "add";
   customerId: number;
   visitMainId: number;
 
-  loading: boolean=false;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -48,7 +47,7 @@ export class VisitMainFormComponent implements OnInit {
     if (this.mode === "add") {
       this.visitMainForm = this.fb.group({
         customerId: [this.visitMain.customerId],
-        visitType: [this.visitMain.visitType],
+        name: [this.visitMain.name],
         remBal: [this.visitMain.remBal],
         totalCost: [this.visitMain.totalCost],
       });
@@ -58,7 +57,7 @@ export class VisitMainFormComponent implements OnInit {
         customerId: [this.visitMain.customerId],
         remBal: [this.visitMain.remBal],
         totalCost: [this.visitMain.totalCost],
-        visitType: [this.visitMain.visitType],
+        name: [this.visitMain.name],
       });
     }
   }
@@ -71,10 +70,7 @@ export class VisitMainFormComponent implements OnInit {
         .getVisitMainFormValues(this.customerId)
         .pipe(finalize(() => this.spinner.hide()))
         .subscribe((res: any) => {
-          console.log(res);
-
-          this.visitMain = res.form;
-          this.visitTypeList = res.visitTypeList; //for drop down
+          this.visitMain = res;
           this.buildVisitMainForm();
         }),
         (err) => {
@@ -101,8 +97,7 @@ export class VisitMainFormComponent implements OnInit {
       .getVisitMainFormValuesForEdit(customerId, visitMainId)
       .pipe(finalize(() => this.spinner.hide()))
       .subscribe((res: any) => {
-        this.visitMain = res.form;
-        this.visitTypeList = res.visitTypeList;
+        this.visitMain = res;
         this.buildVisitMainForm();
       }),
       (err) => {
@@ -121,8 +116,6 @@ export class VisitMainFormComponent implements OnInit {
     this.loading = true;
     this.visitService.saveVisitMainForm(this.visitMainForm.value).subscribe(
       (res: any) => {
-        console.log(res);
-
         this.loading = false;
         this.dialogRef.close(res);
         this.toastr.success(res.message);
@@ -134,9 +127,5 @@ export class VisitMainFormComponent implements OnInit {
       }
     );
     return;
-  }
-  /* comparing the dropdown values & setting the selected value in edit form */
-  compareFn(optionOne: any, optionTwo: any): boolean {
-    return optionOne?.id === optionTwo?.id;
   }
 }

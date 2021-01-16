@@ -19,7 +19,7 @@ import { DatePipe } from "@angular/common";
 })
 export class CustomerFormComponent implements OnInit {
   /* props */
-  public customerForm: FormGroup;
+   customerForm: FormGroup;
   client: Customer = new Customer();
   visitDateBs: string;
   dob: string;

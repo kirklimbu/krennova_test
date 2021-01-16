@@ -31,6 +31,8 @@ export class VisitDetailComponent implements OnInit {
 
   visitMainId: number;
   visitType: string;
+  label1 = "Visit";
+  label2 = "Deposit";
   customerVisitDetail;
   constructor(
     private visitDetailService: VisitDetailService,
@@ -81,7 +83,7 @@ export class VisitDetailComponent implements OnInit {
       // width: "450px",
       data: {
         mode: mode,
-        customerDetails: visitDetail,
+        visitDetails: visitDetail,
       },
     });
 

@@ -34,7 +34,7 @@
 </div>
 
 <!-- new table top bar items -->
-<mat-card-actions>
+<mat-card-actions *ngIf="enableSearch">
   <div class="row top-bar-search">
     <div class="col" *ngIf="enableStatus">
       <label>Select status</label>
@@ -79,7 +79,6 @@
     </div>
     <!-- to date end -->
     <button
-      *ngIf="enableSearch"
       mat-icon-button
       style="margin-top: 28px; margin-right: 4px"
       (click)="onSearch()"

@@ -10,9 +10,8 @@
     <div>
       <!-- table top bar items -->
       <app-table-top-bar
-        [enableSearch]="true"
+        [enableSearch]="false"
         [enableAdd]="true"
-        (search)="onSearch()"
         (add)="onAdd('add')"
       ></app-table-top-bar>
       <!-- table top bar items end -->
@@ -30,39 +29,18 @@
         <td mat-cell *matCellDef="let element; index as i">
           {{ i + 1 }}.
         </td> </ng-container
-      ><ng-container matColumnDef="customerId">
-        <th mat-header-cell *matHeaderCellDef>Customer Id</th>
+      ><ng-container matColumnDef="depositDate">
+        <th mat-header-cell *matHeaderCellDef>Deposit Date</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.customerId }}
+          {{ element.depositDate }}
         </td>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="visitDateBs">
-        <th mat-header-cell *matHeaderCellDef>Vist Date</th>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
         <td mat-cell *matCellDef="let element">
-          {{ element.visitDateBs }}
-        </td>
-      </ng-container>
-
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="doctor">
-        <th mat-header-cell *matHeaderCellDef>Doctor</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element?.doctor | titlecase }}
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="nextVisitDateBs">
-        <th mat-header-cell *matHeaderCellDef>Next Visit Date</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.nextVisitDateBs }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="visitAfterDay">
-        <th mat-header-cell *matHeaderCellDef>Days left for next visit</th>
-        <td mat-cell *matCellDef="let element">
-          {{ element.visitAfterDay }}
+          {{ element.amount }}
         </td>
       </ng-container>
 

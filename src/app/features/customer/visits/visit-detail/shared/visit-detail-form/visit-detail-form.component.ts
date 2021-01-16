@@ -1,3 +1,4 @@
+import { ItemList } from "./../../../../../../core/models/item-list.model";
 import { CustomJs } from "src/app/shared/customjs/custom.js";
 import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { VisitDetail } from "./../../../../../../core/models/visit-detail.model";
@@ -21,11 +22,15 @@ import { finalize, tap } from "rxjs/operators";
 export class VisitDetailFormComponent implements OnInit {
   /* props */
   visitDetail = new VisitDetail();
+  itemListObj = new ItemList();
   formatDate = new FormatDate();
   customDate = new CustomJs();
   visitDetailForm: FormGroup;
 
+  visitTypeList: [] = [];
   mode = "add";
+  status = "visit";
+
   visitDateBs: string;
   isItToday: boolean;
   visitMainId: number;
@@ -42,36 +47,67 @@ export class VisitDetailFormComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public datepipe: DatePipe,
-    public dialogRef: MatDialogRef<VisitDetailFormComponent> // @Inject(MAT_DIALOG_DATA) private modalData: any
+    public dialogRef: MatDialogRef<VisitDetailFormComponent>,
+    @Inject(MAT_DIALOG_DATA) private modalData: any
   ) {}
 
   ngOnInit(): void {
-    this.fetchDefaultaFormValues();
+    console.log(this.modalData);
+
+    this.mode = this.modalData.mode;
+    this.mode === "add"
+      ? this.fetchDefaultaFormValues()
+      : this.fetchVisitDetailForm();
     this.buildVisitDetailForm();
   }
 
-  fetchDefaultaFormValues() {
-    console.log("extraction");
-    // this.spinner.show();
+  /* test end */
+
+  fetchQueryParmValues() {
     this.route.queryParamMap.subscribe((params) => {
-      console.log("extraction 2");
-
       this.visitMainId = +params.get("visitMainId");
-      console.log(this.visitMainId);
-
-      this.visitDetailService
-        .getVisitDetailFormValues(this.visitMainId)
-        .pipe(finalize(() => this.spinner.hide()))
-        .subscribe((res: any) => {
-          console.log(res);
-          this.visitDetail = res;
-          this.buildVisitDetailForm();
-        });
     }),
       (err) => {
         err = err.error.message
           ? this.toastr.error(err.error.message)
           : this.toastr.error("Error fetching param value.");
+        this.spinner.hide();
+      };
+  }
+  fetchDefaultaFormValues() {
+    this.fetchQueryParmValues();
+    this.visitDetailService
+      .getVisitDetailFormValues(this.visitMainId)
+      .pipe(finalize(() => this.spinner.hide()))
+      .subscribe((res: any) => {
+        console.log(res);
+        this.visitDetail = res.form;
+        this.visitTypeList = res.visitTypeList;
+        this.buildVisitDetailForm();
+      });
+  }
+
+  fetchVisitDetailForm() {
+    /* START FROM HERE GET VISITDETAILID sunday morning   */
+    this.fetchQueryParmValues();
+
+    let visitDetailId = this.modalData?.visitDetails?.id;
+    this.mode = "edit";
+    this.visitDetailService
+      .getVisitMainFormValuesForEdit(visitDetailId, this.visitMainId)
+      .pipe(finalize(() => this.spinner.hide()))
+      .subscribe((res: any) => {
+        console.log(res);
+
+        this.visitDetail = res.form;
+        this.visitTypeList = res.visitTypeList;
+
+        this.buildVisitDetailForm();
+      }),
+      (err) => {
+        err = err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error fetching  visit main form values.");
         this.spinner.hide();
       };
   }
@@ -97,6 +133,7 @@ export class VisitDetailFormComponent implements OnInit {
         visitAfterDay: [this.visitDetail.visitAfterDay],
         itemList: this.fb.array([]),
       });
+      this.setItemList();
     }
   }
 
@@ -106,10 +143,10 @@ export class VisitDetailFormComponent implements OnInit {
 
   buildItemListForm() {
     return this.fb.group({
-      id: [],
-      visitDetailId: [],
-      amount: [],
-      item: [],
+      id: [this.itemListObj.id],
+      visitDetailId: [this.itemListObj.visitDetailId],
+      amount: [this.itemListObj.amount],
+      visitType: [this.itemListObj.visitType],
     });
   }
 
@@ -123,6 +160,13 @@ export class VisitDetailFormComponent implements OnInit {
     } else {
       this.itemList().removeAt(i);
     }
+  }
+  /* setting formArray vales on Edit */
+  setItemList() {
+    let control = <FormArray>this.visitDetailForm.controls.itemList;
+    this.visitDetail.itemList.forEach((x) => {
+      control.push(this.fb.group(x));
+    });
   }
   onCancel() {
     this.dialogRef.close();
@@ -148,5 +192,9 @@ export class VisitDetailFormComponent implements OnInit {
     console.log(e);
 
     this.isItToday = e.checked;
+  }
+  /* comparing the dropdown values & setting the selected value in edit form */
+  compareFn(optionOne: any, optionTwo: any): boolean {
+    return optionOne?.id === optionTwo?.id;
   }
 }

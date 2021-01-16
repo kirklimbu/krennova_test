@@ -18,6 +18,17 @@ const routes: Routes = [
     },
     // canActivate: [UserRoleGuardService],
   },
+  {
+    path: "deposit",
+    loadChildren: () =>
+      import("./main-deposit/main-deposit.module").then(
+        (m) => m.MainDepositModule
+      ),
+    data: {
+      // allowedRoles: [UserRoleType.ROLE_ALL],
+    },
+    // canActivate: [UserRoleGuardService],
+  },
 ];
 
 @NgModule({

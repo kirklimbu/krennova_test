@@ -18,6 +18,7 @@ import { SaveCancelButtonsComponent } from "./components/save-cancel-buttons/sav
 import { PopupModalComponent } from "./components/popup-modal/popup-modal.component";
 import { BreadcurmbComponent } from "./components/breadcurmb/breadcurmb.component";
 import { BreadcrumbModule } from "xng-breadcrumb";
+import { TabComponent } from "./components/tab/tab.component";
 
 const DECLARATIONS = [
   ActionButtonsComponent,
@@ -28,6 +29,7 @@ const DECLARATIONS = [
   SaveCancelButtonsComponent,
   PopupModalComponent,
   BreadcurmbComponent,
+  TabComponent,
 ];
 @NgModule({
   declarations: [...DECLARATIONS],

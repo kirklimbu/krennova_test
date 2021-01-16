@@ -12,8 +12,9 @@ import { SharedModule } from "src/app/shared/shared.module";
 import { BreadcrumbModule } from "xng-breadcrumb";
 import { NpDatepickerModule } from "angular-nepali-datepicker";
 
+const DECLARATIONS = [VisitDetailComponent, VisitDetailFormComponent];
 @NgModule({
-  declarations: [VisitDetailComponent, VisitDetailFormComponent],
+  declarations: [...DECLARATIONS],
   imports: [
     CommonModule,
     VisitDetailRoutingModule,
@@ -21,10 +22,12 @@ import { NpDatepickerModule } from "angular-nepali-datepicker";
     SharedModule,
     CoreModule,
     ReactiveFormsModule,
-    NgbModule,
-    BreadcrumbModule,
+
     MaterialModule,
     NpDatepickerModule,
+    NgbModule,
+    BreadcrumbModule,
   ],
+  exports: [...DECLARATIONS],
 })
 export class VisitDetailModule {}

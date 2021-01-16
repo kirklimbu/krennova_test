@@ -20,7 +20,7 @@ export class TableTopBarComponent implements OnInit {
   customDate = new CustomJs();
   formatDate = new FormatDate();
   @Input()
-  enableSearch = true;
+  enableSearch = false;
 
   @Input()
   enableAdd = true;
