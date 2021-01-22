@@ -116,7 +116,7 @@ export class VisitMainFormComponent implements OnInit {
 
   onSave() {
     this.spinner.show();
-    console.log('visit main ko spinner call');
+    console.log("visit main ko spinner call");
 
     if (this.visitMainForm.valid) {
       this.loading = true;
@@ -136,8 +136,9 @@ export class VisitMainFormComponent implements OnInit {
               : this.toastr.error("Error  saving visit details.");
           }
         );
+    } else {
+      this.spinner.hide();
+      return;
     }
-    this.spinner.hide();
-    return;
   }
 }

@@ -132,12 +132,12 @@ export class CustomerFormComponent implements OnInit {
     console.log("cusotmer form ko spinner");
 
     if(this.dob!==undefined){
-      let dob = this.customDate.getStringFromNepaliFunction(this.dob);
+      let dob = this.customDate.getStringFromDatePicker(this.dob);
     this.customerForm.controls["dob"].setValue(dob);
     }
 
     if (this.isItToday !== true) {
-      let regDate = this.customDate.getStringFromNepaliFunction(this.regDate);
+      let regDate = this.customDate.getStringFromDatePicker(this.regDate);
       this.customerForm.controls["regDateBs"].setValue(regDate);
     }
 
@@ -159,9 +159,12 @@ export class CustomerFormComponent implements OnInit {
             this.loading = false;
           }
         );
+    }else{
+      this.spinner.hide();
+      return;
+
     }
-    this.spinner.hide();
-    return;
+
   }
 
   onDayCheck(e) {

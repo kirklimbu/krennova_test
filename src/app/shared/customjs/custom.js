@@ -70,7 +70,7 @@ export class CustomJs {
       this.appendLeadingZeroes(date.getDate())
     );
   }
-
+/* sajan maharjan ko */
   getStringFromNepaliFunction(nepaliFunctionObject) {
     //convert NepaliFunction return object to string
     return (
@@ -91,6 +91,17 @@ export class CustomJs {
     nepaliFunctionObject.month = nepaliFunctionObject.month - 1;
     return this.getNepaliFunctionDateObject(
       this.getStringFromNepaliFunction(nepaliFunctionObject)
+    );
+  }
+/* to string aaunxa */
+  getStringFromDatePicker(datePickerObject) {
+    //convert DatePicker return object to string
+    return (
+      datePickerObject.year +
+      "/" +
+      this.appendLeadingZeroes(datePickerObject.month + 1) +
+      "/" +
+      this.appendLeadingZeroes(datePickerObject.day)
     );
   }
 

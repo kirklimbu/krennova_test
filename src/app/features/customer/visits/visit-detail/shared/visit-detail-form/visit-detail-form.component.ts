@@ -211,9 +211,11 @@ export class VisitDetailFormComponent implements OnInit {
               : this.toastr.error("Error  saving customer details.");
           }
         );
+    }else{
+      this.spinner.hide();
+      return;
     }
-    this.spinner.hide();
-    return;
+
   }
 
   onDayCheck(e) {
