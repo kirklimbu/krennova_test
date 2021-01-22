@@ -141,10 +141,10 @@ export class CustomerFormComponent implements OnInit {
     if (this.customerForm.valid) {
       this.loading = true;
       this.clientService.createCustomer(this.customerForm.value).subscribe(
-        (res) => {
+        (res:any) => {
           this.loading = false;
-
           this.dialogRef.close(res);
+          this.toastr.success(res.message);
         },
         (err) => {
           err.error.message === err.error.message

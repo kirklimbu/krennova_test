@@ -31,7 +31,7 @@ export class VisitDetailFormComponent implements OnInit {
   mode = "add";
   status = "visit";
 
-  visitDateBs: string;
+  visitDate: string;
   isItToday: boolean;
   loading: boolean;
   visitMainId: number;
@@ -100,13 +100,16 @@ export class VisitDetailFormComponent implements OnInit {
       .getVisitMainFormValuesForEdit(visitDetailId, visitMainId)
       .pipe(finalize(() => this.spinner.hide()))
       .subscribe((res: any) => {
+        console.log(res);
+
         this.visitDetail = res.form;
         this.isItToday = res.form.today;
         this.visitTypeList = res.visitTypeList;
-        this.visitDateBs = this.customDate.getDatePickerObject(
-          this.visitDetail.visitDateBs
-        );
-
+        if (this.isItToday !== true) {
+          this.visitDate = this.customDate.getDatePickerObject(
+            this.visitDetail.visitDateBs
+          );
+        }
         this.buildVisitDetailForm();
       }),
       (err) => {
@@ -121,7 +124,6 @@ export class VisitDetailFormComponent implements OnInit {
     if (this.mode === "add") {
       this.visitDetailForm = this.fb.group({
         visitMainId: [this.visitDetail.visitMainId],
-        dovisitMainIdctor: [this.visitDetail.doctor],
         visitDateBs: [this.visitDetail.visitDateBs],
         doctor: [this.visitDetail.doctor],
         visitAfterDay: [this.visitDetail.visitAfterDay],
@@ -182,7 +184,7 @@ export class VisitDetailFormComponent implements OnInit {
 
     if (this.isItToday !== true) {
       let visitDateBs = this.customDate.getStringFromNepaliFunction(
-        this.visitDateBs
+        this.visitDate
       );
       this.visitDetailForm.controls["visitDateBs"].setValue(visitDateBs);
     }
@@ -192,9 +194,10 @@ export class VisitDetailFormComponent implements OnInit {
       this.visitDetailService
         .saveVisitMainForm(this.visitDetailForm.value)
         .subscribe(
-          (res) => {
+          (res: any) => {
             this.loading = false;
             this.dialogRef.close(res);
+            this.toastr.success(res.message);
           },
           (err) => {
             this.loading = false;
