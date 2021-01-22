@@ -79,7 +79,9 @@ export class CustomerFormComponent implements OnInit {
           console.log(res);
 
           this.dob = this.customDate.getDatePickerObject(this.client.dob);
-          this.regDate = this.customDate.getDatePickerObject(this.client.regDateBs);
+          this.regDate = this.customDate.getDatePickerObject(
+            this.client.regDateBs
+          );
           this.buildCustomerForm();
         },
         (err) => {
@@ -120,16 +122,21 @@ export class CustomerFormComponent implements OnInit {
   }
 
   onCancel() {
+    /* send a string when dialog closes */
     this.dialogRef.close();
   }
 
   onSave() {
     console.log(this.customerForm.value);
+    // console.log(this.regDate);
 
     let dob = this.customDate.getStringFromNepaliFunction(this.dob);
-    let regDate = this.customDate.getStringFromNepaliFunction(this.regDate);
     this.customerForm.controls["dob"].setValue(dob);
-    this.customerForm.controls["regDateBs"].setValue(regDate);
+
+    if (this.isItToday !== true) {
+      let regDate = this.customDate.getStringFromNepaliFunction(this.regDate);
+      this.customerForm.controls["regDateBs"].setValue(regDate);
+    }
 
     if (this.customerForm.valid) {
       this.loading = true;

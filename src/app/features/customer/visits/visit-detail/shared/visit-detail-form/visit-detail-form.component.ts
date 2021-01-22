@@ -103,7 +103,9 @@ export class VisitDetailFormComponent implements OnInit {
         this.visitDetail = res.form;
         this.isItToday = res.form.today;
         this.visitTypeList = res.visitTypeList;
-        this.visitDateBs = this.customDate.getDatePickerObject(this.visitDetail.visitDateBs);
+        this.visitDateBs = this.customDate.getDatePickerObject(
+          this.visitDetail.visitDateBs
+        );
 
         this.buildVisitDetailForm();
       }),
@@ -177,10 +179,13 @@ export class VisitDetailFormComponent implements OnInit {
 
   onSave() {
     console.log(this.visitDetailForm.value);
-    let visitDateBs = this.customDate.getStringFromNepaliFunction(this.visitDateBs);
-    console.log(visitDateBs);
 
-    this.visitDetailForm.controls["visitDateBs"].setValue(visitDateBs);
+    if (this.isItToday !== true) {
+      let visitDateBs = this.customDate.getStringFromNepaliFunction(
+        this.visitDateBs
+      );
+      this.visitDetailForm.controls["visitDateBs"].setValue(visitDateBs);
+    }
 
     if (this.visitDetailForm.valid) {
       this.loading = true;
@@ -200,6 +205,8 @@ export class VisitDetailFormComponent implements OnInit {
           }
         );
     }
+    console.log("invalid form");
+
     return;
   }
 
