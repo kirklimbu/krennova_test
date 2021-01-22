@@ -97,13 +97,9 @@ export class CustomerComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       // table refresh on cancel nagarne
       console.log(result);
-      this.clientListDataSource$ = result; // if response has list
-      this.fetchClientList(); //if response is not list -->  refreshing particular segment
-      if (result) {
-        console.log("yes");
-        // this.clientService.createCustomer(result);
-      } else {
-        console.log("no");
+      //if response is not list -->  refreshing particular segment
+      if (result !== "cancel") {
+        this.fetchClientList();
       }
     });
   }

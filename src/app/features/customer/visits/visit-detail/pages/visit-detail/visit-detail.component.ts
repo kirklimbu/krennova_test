@@ -80,7 +80,7 @@ export class VisitDetailComponent implements OnInit {
     console.log(visitDetail);
     const dialogRef = this.dialog.open(VisitDetailFormComponent, {
       disableClose: true,
-      height: "auto",
+      // width: "450px",
 
       data: {
         mode: mode,
@@ -89,19 +89,8 @@ export class VisitDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      /* YESKO RESPONSE MA SERVER LE LIST PANI PATHAUXA TESLAI TABLE MA POPULATE GARNE */
-      console.log(result);
-
-      if (result === (null || undefined)) {
-        /* IF DATA IS NOT ADDED/ MODIFIED */
-
+      if (result !== "cancel") {
         this.fetchVisitDetailList();
-      } else {
-        /* IF NEW DATA IS ADDED/MODIFED
-          RESPONSE NULL XAENA SO TABLE MA ASSIGN GARNE */
-        // this.visitListDataSource$ = result; //UNCOMMENT AFTER BACKEND SENDS LIST
-
-        this.fetchVisitDetailList(); // REMOVE AFTER BACKEND SENDS LIST
       }
     });
   }

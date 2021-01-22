@@ -91,6 +91,8 @@ export class VisitMainFormComponent implements OnInit {
   }
 
   fetchMainVisitForm() {
+    this.spinner.show();
+
     let customerId = this.modalData?.customerDetails?.customerId;
     let visitMainId = this.modalData?.customerDetails?.id;
     this.visitService
@@ -109,7 +111,7 @@ export class VisitMainFormComponent implements OnInit {
   }
 
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close("cancel");
   }
 
   onSave() {

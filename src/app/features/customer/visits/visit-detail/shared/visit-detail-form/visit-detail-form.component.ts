@@ -208,7 +208,6 @@ export class VisitDetailFormComponent implements OnInit {
           }
         );
     }
-    console.log("invalid form");
 
     return;
   }

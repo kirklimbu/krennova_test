@@ -98,16 +98,8 @@ export class MainVisitComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       /* YESKO RESPONSE MA SERVER LE LIST PANI PATHAUXA TESLAI TABLE MA POPULATE GARNE */
 
-      if (result === (null || undefined)) {
-        /* IF DATA IS NOT ADDED/ MODIFIED */
-
+      if (result !== "cancel") {
         this.fetchMainVisitList();
-      } else {
-        /* IF NEW DATA IS ADDED/MODIFED
-         RESPONSE NULL XAENA SO TABLE MA ASSIGN GARNE */
-        // this.visitListDataSource$ = result; //UNCOMMENT AFTER BACKEND SENDS LIST
-
-        this.fetchMainVisitList(); // REMOVE AFTER BACKEND SENDS LIST
       }
     });
   }

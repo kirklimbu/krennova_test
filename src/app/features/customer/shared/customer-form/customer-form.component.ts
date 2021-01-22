@@ -123,7 +123,7 @@ export class CustomerFormComponent implements OnInit {
 
   onCancel() {
     /* send a string when dialog closes */
-    this.dialogRef.close();
+    this.dialogRef.close('cancel');
   }
 
   onSave() {

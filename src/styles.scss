@@ -140,9 +140,11 @@ mat-toolbar {
   // margin: 0 auto;
   display: grid;
   place-items: center;
-  min-height: 'calc(100vh - 90px)';
-  height: 'auto';
+  height: auto;
 
+  /* min-height: 'calc(100vh - 90px)';
+  height: 'auto';
+ */
 }
 
 /* .form-title {
