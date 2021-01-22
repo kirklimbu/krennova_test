@@ -26,7 +26,7 @@ const DECLARATIONS: any[] = [
     CoreRoutingModule,
     MaterialModule,
     ToastrModule.forRoot({
-      timeOut: 7000,
+      timeOut: 5000,
       positionClass: "toast-bottom-right",
       autoDismiss: true,
       closeButton: true,

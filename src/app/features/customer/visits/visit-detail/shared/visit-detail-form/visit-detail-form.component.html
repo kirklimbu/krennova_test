@@ -1,221 +1,224 @@
 <!-- add/edit modal -->
 
 <div class="content-wrapper">
-  <!--grid row-->
-  <div class="row">
-    <!--grid col-->
-    <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 card-container">
-      <!-- <mat-card class="client-card"> UNCOMMENT IF IT IS NOT MODAL-->
-      <form [formGroup]="visitDetailForm" autocomplete="off">
-        <mat-card-title align="center">
-          <h3 class="form-title">Visit Detail {{ mode | titlecase }} Form</h3>
-          <!--  <button mat-icon-button class="add-visit">
+  <mat-dialog-content>
+    <!--grid row-->
+    <div class="row">
+      <!--grid col-->
+      <div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 card-container">
+        <!-- <mat-card class="client-card"> UNCOMMENT IF IT IS NOT MODAL-->
+        <form [formGroup]="visitDetailForm" autocomplete="off">
+          <mat-card-title align="center">
+            <h3 class="form-title">Visit Detail {{ mode | titlecase }} Form</h3>
+            <!--  <button mat-icon-button class="add-visit">
             <mat-icon>add</mat-icon>
           </button> -->
-        </mat-card-title>
-        <hr />
-        <mat-card-content>
-          <!-- third-row -->
-          <div class="row">
-            <!-- today -->
-            <div class="col nep-date-picker">
-              <app-form-group>
-                <!-- checkbox -->
-                <mat-checkbox
-                  [style.margin]
-                  class="example-margin small"
-                  formControlName="today"
-                  (change)="onDayCheck($event)"
-                  >Today</mat-checkbox
-                >
-                <!-- checkbox end -->
-              </app-form-group>
-            </div>
-            <!-- today end -->
-            <!-- test end -->
+          </mat-card-title>
+          <hr />
+          <mat-card-content>
+            <!-- third-row -->
+            <div class="row">
+              <!-- today -->
+              <div class="col nep-date-picker">
+                <app-form-group>
+                  <!-- checkbox -->
+                  <mat-checkbox
+                    [style.margin]
+                    class="example-margin small"
+                    formControlName="today"
+                    (change)="onDayCheck($event)"
+                    >Today</mat-checkbox
+                  >
+                  <!-- checkbox end -->
+                </app-form-group>
+              </div>
+              <!-- today end -->
+              <!-- test end -->
 
-            <!-- second-col -->
-            <div class="col nep-date-picker" *ngIf="!isItToday">
-              <app-form-group>
-                <mat-label class="text-muted">Reg Date</mat-label>
-                <np-datepicker
-                  class="form-group"
-                  inputClass="form-control"
-                  language="en"
-                  formControlName="visitDateBs"
-                  [(ngModel)]="visitDate"
-                  [dateFormatter]="visitDateFormatter"
-                ></np-datepicker>
-                <!-- <blockquote class="text-muted small text-left">
+              <!-- second-col -->
+              <div class="col nep-date-picker" *ngIf="!isItToday">
+                <app-form-group>
+                  <mat-label class="text-muted">Reg Date</mat-label>
+                  <np-datepicker
+                    class="form-group"
+                    inputClass="form-control"
+                    language="en"
+                    formControlName="visitDateBs"
+                    [(ngModel)]="visitDate"
+                    [dateFormatter]="visitDateFormatter"
+                  ></np-datepicker>
+                  <!-- <blockquote class="text-muted small text-left">
                   Select Registration Date
                 </blockquote> -->
-              </app-form-group>
+                </app-form-group>
+              </div>
+              <!-- second-col end -->
             </div>
-            <!-- second-col end -->
-          </div>
-          <!-- third-row end -->
-          <!-- second row -->
-          <div class="row">
-            <!-- doctor -->
-            <div class="col-md-6">
-              <app-form-group>
-                <mat-form-field>
-                  <input
-                    matInput
-                    type="text"
-                    placeholder=" Doctor"
-                    formControlName="doctor"
-                    id="lname"
-                    fxlayoutalign="column"
-                  />
-                  <!-- <mat-hint align="end">Enter Doctor Name</mat-hint> -->
-                  <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
+            <!-- third-row end -->
+            <!-- second row -->
+            <div class="row">
+              <!-- doctor -->
+              <div class="col-md-6">
+                <app-form-group>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="text"
+                      placeholder=" Doctor"
+                      formControlName="doctor"
+                      id="lname"
+                      fxlayoutalign="column"
+                    />
+                    <!-- <mat-hint align="end">Enter Doctor Name</mat-hint> -->
+                    <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
                     >Last Name is required</mat-error
                   >
                   <mat-error *ngIf="hasError('wardNum', 'maxlength')"
                     >Enter last name</mat-error
                   > -->
-                </mat-form-field>
-              </app-form-group>
-            </div>
-            <!-- doctor end -->
-            <!-- visitAfter  -->
-            <div class="col-md-6">
-              <app-form-group>
-                <mat-form-field>
-                  <input
-                    matInput
-                    type="number"
-                    placeholder=" Visit After"
-                    formControlName="visitAfterDay"
-                    id="lname"
-                    fxlayoutalign="column"
-                    min="0"
-                  />
-                  <!-- <mat-hint align="end">Enter Next visit </mat-hint> -->
-                  <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
+                  </mat-form-field>
+                </app-form-group>
+              </div>
+              <!-- doctor end -->
+              <!-- visitAfter  -->
+              <div class="col-md-6">
+                <app-form-group>
+                  <mat-form-field>
+                    <input
+                      matInput
+                      type="number"
+                      placeholder=" Visit After"
+                      formControlName="visitAfterDay"
+                      id="lname"
+                      fxlayoutalign="column"
+                      min="0"
+                    />
+                    <!-- <mat-hint align="end">Enter Next visit </mat-hint> -->
+                    <!--  <mat-error *ngIf="hasError('wardNum', 'required')"
                     >Last Name is required</mat-error
                   >
                   <mat-error *ngIf="hasError('wardNum', 'maxlength')"
                     >Enter last name</mat-error
                   > -->
-                </mat-form-field>
-              </app-form-group>
+                  </mat-form-field>
+                </app-form-group>
+              </div>
+              <!-- visitAfter  enf-->
             </div>
-            <!-- visitAfter  enf-->
-          </div>
-          <!-- second row end -->
-          <!-- table row -->
-          <div class="row">
-            <div class="col">
-              <table
-                class="table table-bordered modal-table"
-                formArrayName="itemList"
-              >
-                <tr>
-                  <th colspan="2">Add Items</th>
-
-                  <th class="m-auto">
-                    <button
-                      fxHide
-                      fxShow.lt-sm
-                      mat-icon-button
-                      (click)="addItemList()"
-                    >
-                      <mat-icon
-                        class="add-table-row mx-auto"
-                        style="display: inline-table"
-                        color="primary"
-                      >
-                        add</mat-icon
-                      >
-                    </button>
-                  </th>
-                </tr>
-
-                <tr
-                  *ngFor="let quantity of itemList().controls; let i = index"
-                  [formGroupName]="i"
+            <!-- second row end -->
+            <!-- table row -->
+            <div class="row">
+              <div class="col">
+                <table
+                  class="table table-bordered modal-table"
+                  formArrayName="itemList"
                 >
-                  <td>
-                    <app-form-group [required]="true">
-                      <mat-form-field
-                        appearance="fill"
-                        class="modal-mat-select"
+                  <tr>
+                    <th colspan="2">Add Items</th>
+
+                    <th class="m-auto">
+                      <button
+                        fxHide
+                        fxShow.lt-sm
+                        mat-icon-button
+                        (click)="addItemList()"
                       >
-                        <mat-label>Visit Type</mat-label>
-                        <mat-select
-                          style="padding: 0"
-                          formControlName="visitType"
-                          [compareWith]="compareFn"
+                        <mat-icon
+                          class="add-table-row mx-auto"
+                          style="display: inline-table"
+                          color="primary"
                         >
-                          <mat-option
-                            *ngFor="let visit of visitTypeList"
-                            [value]="visit"
+                          add</mat-icon
+                        >
+                      </button>
+                    </th>
+                  </tr>
+
+                  <tr
+                    *ngFor="let quantity of itemList().controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <td>
+                      <app-form-group [required]="true">
+                        <mat-form-field
+                          appearance="fill"
+                          class="modal-mat-select"
+                        >
+                          <mat-label>Visit Type</mat-label>
+                          <mat-select
+                            style="padding: 0"
+                            formControlName="visitType"
+                            [compareWith]="compareFn"
                           >
-                            {{ visit.type }}
-                          </mat-option>
-                        </mat-select>
-                        <!-- <mat-hint align="end">Enter e-mail Address</mat-hint> -->
-                      </mat-form-field>
-                    </app-form-group>
-                  </td>
+                            <mat-option
+                              *ngFor="let visit of visitTypeList"
+                              [value]="visit"
+                            >
+                              {{ visit.type }}
+                            </mat-option>
+                          </mat-select>
+                          <!-- <mat-hint align="end">Enter e-mail Address</mat-hint> -->
+                        </mat-form-field>
+                      </app-form-group>
+                    </td>
 
-                  <td>
-                    <app-form-group [required]="true">
-                      <mat-form-field class="=full-width">
-                        <input
-                          matInput
-                          type="number"
-                          placeholder=" Amount "
-                          formControlName="amount"
-                        />
-                        <!-- <mat-hint align="end">Enter Item Amount </mat-hint> -->
-                        <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
+                    <td>
+                      <app-form-group [required]="true">
+                        <mat-form-field class="=full-width">
+                          <input
+                            matInput
+                            type="number"
+                            placeholder=" Amount "
+                            formControlName="amount"
+                          />
+                          <!-- <mat-hint align="end">Enter Item Amount </mat-hint> -->
+                          <!--<mat-error *ngIf="hasError('mobile', 'required')">Address is required</mat-error>
               <mat-error *ngIf="hasError('mobile', 'maxlength')">You have more than 100 characters</mat-error>-->
-                      </mat-form-field>
-                    </app-form-group>
-                  </td>
+                        </mat-form-field>
+                      </app-form-group>
+                    </td>
 
-                  <td>
-                    <button
-                      (click)="removeItemList(i)"
-                      button
-                      fxHide
-                      fxShow.lt-sm
-                      mat-icon-button
-                      class="add-table-row"
-                    >
-                      <mat-icon
-                        color="warn"
-                        style="display: inline-table; margin-top: 1.5rem"
-                        >delete_outline</mat-icon
+                    <td>
+                      <button
+                        (click)="removeItemList(i)"
+                        button
+                        fxHide
+                        fxShow.lt-sm
+                        mat-icon-button
+                        class="add-table-row"
                       >
-                    </button>
-                  </td>
-                </tr>
-              </table>
+                        <mat-icon
+                          color="warn"
+                          style="display: inline-table; margin-top: 1.5rem"
+                          >delete_outline</mat-icon
+                        >
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- table row end -->
+          </mat-card-content>
+
+          <div class="row">
+            <div class="col card-actions">
+              <mat-card-actions>
+                <app-save-cancel-buttons
+                  [isSaveLoading]="loading"
+                  (save)="onSave()"
+                  (cancel)="onCancel()"
+                ></app-save-cancel-buttons>
+              </mat-card-actions>
             </div>
           </div>
-          <!-- table row end -->
-        </mat-card-content>
+        </form>
 
-        <div class="row">
-          <div class="col card-actions">
-            <mat-card-actions>
-              <app-save-cancel-buttons
-              [isSaveLoading]='loading'
-                (save)="onSave()"
-                (cancel)="onCancel()"
-              ></app-save-cancel-buttons>
-            </mat-card-actions>
-          </div>
-        </div>
-      </form>
-      <!-- </mat-card> -->
-      <hr />
+        <!-- </mat-card> -->
+        <hr />
+      </div>
+      <!--grid col-->
     </div>
-    <!--grid col-->
-  </div>
-  <!--grid row-->
+    <!--grid row-->
+  </mat-dialog-content>
 </div>

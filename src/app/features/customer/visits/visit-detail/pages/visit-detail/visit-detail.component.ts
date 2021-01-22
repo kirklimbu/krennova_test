@@ -80,7 +80,8 @@ export class VisitDetailComponent implements OnInit {
     console.log(visitDetail);
     const dialogRef = this.dialog.open(VisitDetailFormComponent, {
       disableClose: true,
-      // width: "450px",
+      height: "auto",
+
       data: {
         mode: mode,
         visitDetails: visitDetail,
@@ -89,6 +90,7 @@ export class VisitDetailComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       /* YESKO RESPONSE MA SERVER LE LIST PANI PATHAUXA TESLAI TABLE MA POPULATE GARNE */
+      console.log(result);
 
       if (result === (null || undefined)) {
         /* IF DATA IS NOT ADDED/ MODIFIED */

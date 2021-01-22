@@ -94,7 +94,7 @@ export class VisitDetailFormComponent implements OnInit {
   fetchVisitDetailForm() {
     let visitDetailId = this.modalData?.visitDetails?.id;
     let visitMainId = this.modalData?.visitDetails?.customerId;
-
+    this.spinner.show();
     this.mode = "edit";
     this.visitDetailService
       .getVisitMainFormValuesForEdit(visitDetailId, visitMainId)
@@ -176,7 +176,7 @@ export class VisitDetailFormComponent implements OnInit {
     });
   }
   onCancel() {
-    this.dialogRef.close();
+    this.dialogRef.close("cancel");
   }
 
   onSave() {

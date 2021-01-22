@@ -49,6 +49,8 @@ body {
 
 .content-wrapper {
   padding: 30px;
+  height: auto;
+
 }
 
 .sidenav {
@@ -135,8 +137,12 @@ mat-toolbar {
 }
 
 .card-container {
+  // margin: 0 auto;
   display: grid;
   place-items: center;
+  min-height: 'calc(100vh - 90px)';
+  height: 'auto';
+
 }
 
 /* .form-title {
@@ -202,5 +208,3 @@ mat-toolbar {
 .tab-bar {
   margin: 2rem 0 2rem 0;
 }
-
-
