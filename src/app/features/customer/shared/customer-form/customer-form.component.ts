@@ -123,15 +123,18 @@ export class CustomerFormComponent implements OnInit {
 
   onCancel() {
     /* send a string when dialog closes */
-    this.dialogRef.close('cancel');
+    this.dialogRef.close("cancel");
   }
 
   onSave() {
+    this.spinner.show();
     console.log(this.customerForm.value);
-    // console.log(this.regDate);
+    console.log("cusotmer form ko spinner");
 
-    let dob = this.customDate.getStringFromNepaliFunction(this.dob);
+    if(this.dob!==undefined){
+      let dob = this.customDate.getStringFromNepaliFunction(this.dob);
     this.customerForm.controls["dob"].setValue(dob);
+    }
 
     if (this.isItToday !== true) {
       let regDate = this.customDate.getStringFromNepaliFunction(this.regDate);
@@ -140,21 +143,25 @@ export class CustomerFormComponent implements OnInit {
 
     if (this.customerForm.valid) {
       this.loading = true;
-      this.clientService.createCustomer(this.customerForm.value).subscribe(
-        (res:any) => {
-          this.loading = false;
-          this.dialogRef.close(res);
-          this.toastr.success(res.message);
-        },
-        (err) => {
-          err.error.message === err.error.message
-            ? this.toastr.error(err.error.message)
-            : this.toastr.error("Error  saving customer details.");
-          this.loading = false;
-        }
-      );
+      this.clientService
+        .createCustomer(this.customerForm.value)
+        .pipe(finalize(() => this.spinner.hide()))
+        .subscribe(
+          (res: any) => {
+            this.loading = false;
+            this.dialogRef.close(res);
+            this.toastr.success(res.message);
+          },
+          (err) => {
+            err.error.message === err.error.message
+              ? this.toastr.error(err.error.message)
+              : this.toastr.error("Error  saving customer details.");
+            this.loading = false;
+          }
+        );
     }
-    // this.dialogRef.close(this.customerForm.value);
+    this.spinner.hide();
+    return;
   }
 
   onDayCheck(e) {

@@ -181,6 +181,8 @@ export class VisitDetailFormComponent implements OnInit {
 
   onSave() {
     console.log(this.visitDetailForm.value);
+    this.spinner.show();
+    console.log('detail form ma spinner called ');
 
     if (this.isItToday !== true) {
       let visitDateBs = this.customDate.getStringFromNepaliFunction(
@@ -193,6 +195,8 @@ export class VisitDetailFormComponent implements OnInit {
       this.loading = true;
       this.visitDetailService
         .saveVisitMainForm(this.visitDetailForm.value)
+        .pipe(finalize(() => this.spinner.hide()))
+
         .subscribe(
           (res: any) => {
             this.loading = false;
@@ -208,7 +212,7 @@ export class VisitDetailFormComponent implements OnInit {
           }
         );
     }
-
+    this.spinner.hide();
     return;
   }
 

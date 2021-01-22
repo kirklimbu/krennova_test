@@ -115,22 +115,29 @@ export class VisitMainFormComponent implements OnInit {
   }
 
   onSave() {
+    this.spinner.show();
+    console.log('visit main ko spinner call');
+
     if (this.visitMainForm.valid) {
       this.loading = true;
-      this.visitService.saveVisitMainForm(this.visitMainForm.value).subscribe(
-        (res: any) => {
-          this.loading = false;
-          this.dialogRef.close(res);
-          this.toastr.success(res.message);
-        },
-        (err) => {
-          this.loading = false;
-          err.error.message === err.error.message
-            ? this.toastr.error(err.error.message)
-            : this.toastr.error("Error  saving visit details.");
-        }
-      );
+      this.visitService
+        .saveVisitMainForm(this.visitMainForm.value)
+        .pipe(finalize(() => this.spinner.hide()))
+        .subscribe(
+          (res: any) => {
+            this.loading = false;
+            this.dialogRef.close(res);
+            this.toastr.success(res.message);
+          },
+          (err) => {
+            this.loading = false;
+            err.error.message === err.error.message
+              ? this.toastr.error(err.error.message)
+              : this.toastr.error("Error  saving visit details.");
+          }
+        );
     }
+    this.spinner.hide();
     return;
   }
 }
