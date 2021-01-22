@@ -1,7 +1,7 @@
 import { ItemList } from "./item-list.model";
 
 export class VisitDetail {
-  id?: number;
+  visitDetailId?: number;
   customerId?: number;
   visitMainId: number;
   amount?: number;

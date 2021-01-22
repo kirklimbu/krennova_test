@@ -132,7 +132,7 @@ export class VisitDetailFormComponent implements OnInit {
       });
     } else {
       this.visitDetailForm = this.fb.group({
-        id: [this.visitDetail.id],
+        visitDetailId: [this.visitDetail.visitDetailId],
         visitMainId: [this.visitDetail.visitMainId],
         visitDateBs: [this.visitDetail.visitDateBs],
         doctor: [this.visitDetail.doctor],
