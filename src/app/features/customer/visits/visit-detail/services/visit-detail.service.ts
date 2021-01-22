@@ -38,10 +38,10 @@ export class VisitDetailService {
         })
       );
   }
-  getVisitMainFormValuesForEdit(customerId?: number, visitMainId?: number) {
+  getVisitMainFormValuesForEdit(visitDetailId?: number, visitMainId?: number) {
     return this.http
       .get(
-        `${this.API_URL}auth/customer/visit/detail/form?customerId=${customerId}&visitMainId=${visitMainId}`
+        `${this.API_URL}auth/customer/visit/detail/form?visitDetailId=${visitDetailId}&visitMainId=${visitMainId}`
       )
       .pipe(
         catchError((err) => {

@@ -19,7 +19,7 @@ import { DatePipe } from "@angular/common";
 })
 export class CustomerFormComponent implements OnInit {
   /* props */
-   customerForm: FormGroup;
+  customerForm: FormGroup;
   client: Customer = new Customer();
   visitDateBs: string;
   dob: string;
@@ -28,6 +28,7 @@ export class CustomerFormComponent implements OnInit {
   customerId: number;
 
   isItToday: boolean;
+  loading: boolean;
   hideRegDate = false;
   formatDate = new FormatDate();
   customDate = new CustomJs();
@@ -37,41 +38,6 @@ export class CustomerFormComponent implements OnInit {
   regDateFormatter: DateFormatter = (date) => {
     return `${date.year} / ${date.month + 1} / ${date.day} `;
   };
-
-  toppingList: [
-    { id: number; type: string },
-    { id: number; type: string },
-    { id: number; type: string },
-    { id: number; type: string },
-    { id: number; type: string },
-    { id: number; type: string }
-  ] = [
-    {
-      id: 1,
-      type: "type-A",
-    },
-    {
-      id: 2,
-      type: "type-B",
-    },
-    {
-      id: 3,
-      type: "type-C",
-    },
-    {
-      id: 4,
-      type: "type-D",
-    },
-    {
-      id: 5,
-      type: "type-E",
-    },
-    {
-      id: 6,
-      type: "type-F",
-    },
-  ];
-  toppings: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -85,13 +51,10 @@ export class CustomerFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.mode = this.modalData.mode;
     this.mode === "edit" ? this.fetchCustomerDetails() : this.fetchFormValues();
     this.buildCustomerForm();
   }
-
-
 
   fetchFormValues() {
     this.spinner.show();
@@ -113,7 +76,10 @@ export class CustomerFormComponent implements OnInit {
         (res: any) => {
           this.mode = "edit";
           this.client = res;
+          console.log(res);
+
           this.dob = this.customDate.getDatePickerObject(this.client.dob);
+          this.regDate = this.customDate.getDatePickerObject(this.client.regDateBs);
           this.buildCustomerForm();
         },
         (err) => {
@@ -127,8 +93,6 @@ export class CustomerFormComponent implements OnInit {
 
   buildCustomerForm() {
     if (this.mode === "add") {
-
-
       this.customerForm = this.formBuilder.group({
         name: [this.client.name],
         mobile: [this.client.mobile],
@@ -141,8 +105,6 @@ export class CustomerFormComponent implements OnInit {
         visitDateBs: [this.client.visitDateBs], */
       });
     } else {
-
-
       this.customerForm = this.formBuilder.group({
         id: [this.client.id],
         name: [this.client.name],
@@ -158,25 +120,33 @@ export class CustomerFormComponent implements OnInit {
   }
 
   onCancel() {
-
     this.dialogRef.close();
   }
 
   onSave() {
+    console.log(this.customerForm.value);
 
     let dob = this.customDate.getStringFromNepaliFunction(this.dob);
+    let regDate = this.customDate.getStringFromNepaliFunction(this.regDate);
     this.customerForm.controls["dob"].setValue(dob);
+    this.customerForm.controls["regDateBs"].setValue(regDate);
 
-    this.clientService.createCustomer(this.customerForm.value).subscribe(
-      (res) => {
-        this.dialogRef.close(res);
-      },
-      (err) => {
-        err.error.message === err.error.message
-          ? this.toastr.error(err.error.message)
-          : this.toastr.error("Error  saving customer details.");
-      }
-    );
+    if (this.customerForm.valid) {
+      this.loading = true;
+      this.clientService.createCustomer(this.customerForm.value).subscribe(
+        (res) => {
+          this.loading = false;
+
+          this.dialogRef.close(res);
+        },
+        (err) => {
+          err.error.message === err.error.message
+            ? this.toastr.error(err.error.message)
+            : this.toastr.error("Error  saving customer details.");
+          this.loading = false;
+        }
+      );
+    }
     // this.dialogRef.close(this.customerForm.value);
   }
 

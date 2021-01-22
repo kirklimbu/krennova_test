@@ -22,7 +22,7 @@ export class MainDepositFormComponent implements OnInit {
   mainDepositForm: FormGroup;
   mode = "add";
   status = "deposit";
-  isSaveLoading: boolean;
+  loading: boolean;
 
   visitMainId: number;
   constructor(
@@ -87,6 +87,20 @@ export class MainDepositFormComponent implements OnInit {
   }
   onSave() {
     console.log(this.mainDepositForm.value);
+    this.loading = true;
+    this.mainDepositService.saveMainDepositForm(this.mainDepositForm.value).subscribe(
+      (res: any) => {
+        this.loading = false;
+        this.dialogRef.close(res);
+        this.toastr.success(res.message);
+      },
+      (err) => {
+        err.error.message === err.error.message
+          ? this.toastr.error(err.error.message)
+          : this.toastr.error("Error  saving deposit details.");
+      }
+    );
+    return;
   }
   onCancel() {
     this.dialogRef.close();

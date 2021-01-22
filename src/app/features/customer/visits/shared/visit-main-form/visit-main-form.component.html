@@ -39,8 +39,7 @@
       <div class="col card-actions">
         <mat-card-actions>
           <app-save-cancel-buttons
-            [isCancelLoading]
-            [isSaveLoading]
+            [isSaveLoading]="loading"
             (save)="onSave()"
             (cancel)="onCancel()"
           ></app-save-cancel-buttons>

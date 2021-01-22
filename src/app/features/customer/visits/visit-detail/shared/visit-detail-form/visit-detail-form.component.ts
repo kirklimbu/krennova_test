@@ -33,6 +33,7 @@ export class VisitDetailFormComponent implements OnInit {
 
   visitDateBs: string;
   isItToday: boolean;
+  loading: boolean;
   visitMainId: number;
 
   visitDateFormatter: DateFormatter = (date) => {
@@ -64,6 +65,7 @@ export class VisitDetailFormComponent implements OnInit {
   /* test end */
 
   fetchQueryParmValues() {
+    /* for add */
     this.route.queryParamMap.subscribe((params) => {
       this.visitMainId = +params.get("visitMainId");
     }),
@@ -82,25 +84,26 @@ export class VisitDetailFormComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.visitDetail = res.form;
+        this.isItToday = res.form.today;
+
         this.visitTypeList = res.visitTypeList;
         this.buildVisitDetailForm();
       });
   }
 
   fetchVisitDetailForm() {
-    /* START FROM HERE GET VISITDETAILID sunday morning   */
-    this.fetchQueryParmValues();
-
     let visitDetailId = this.modalData?.visitDetails?.id;
+    let visitMainId = this.modalData?.visitDetails?.customerId;
+
     this.mode = "edit";
     this.visitDetailService
-      .getVisitMainFormValuesForEdit(visitDetailId, this.visitMainId)
+      .getVisitMainFormValuesForEdit(visitDetailId, visitMainId)
       .pipe(finalize(() => this.spinner.hide()))
       .subscribe((res: any) => {
-        console.log(res);
-
         this.visitDetail = res.form;
+        this.isItToday = res.form.today;
         this.visitTypeList = res.visitTypeList;
+        this.visitDateBs = this.customDate.getDatePickerObject(this.visitDetail.visitDateBs);
 
         this.buildVisitDetailForm();
       }),
@@ -174,18 +177,30 @@ export class VisitDetailFormComponent implements OnInit {
 
   onSave() {
     console.log(this.visitDetailForm.value);
-    this.visitDetailService
-      .saveVisitMainForm(this.visitDetailForm.value)
-      .subscribe(
-        (res) => {
-          this.dialogRef.close(res);
-        },
-        (err) => {
-          err.error.message === err.error.message
-            ? this.toastr.error(err.error.message)
-            : this.toastr.error("Error  saving customer details.");
-        }
-      );
+    let visitDateBs = this.customDate.getStringFromNepaliFunction(this.visitDateBs);
+    console.log(visitDateBs);
+
+    this.visitDetailForm.controls["visitDateBs"].setValue(visitDateBs);
+
+    if (this.visitDetailForm.valid) {
+      this.loading = true;
+      this.visitDetailService
+        .saveVisitMainForm(this.visitDetailForm.value)
+        .subscribe(
+          (res) => {
+            this.loading = false;
+            this.dialogRef.close(res);
+          },
+          (err) => {
+            this.loading = false;
+
+            err.error.message === err.error.message
+              ? this.toastr.error(err.error.message)
+              : this.toastr.error("Error  saving customer details.");
+          }
+        );
+    }
+    return;
   }
 
   onDayCheck(e) {

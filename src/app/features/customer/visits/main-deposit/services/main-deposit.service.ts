@@ -49,11 +49,13 @@ export class MainDepositService {
         })
       );
   }
-  saveVisitMainForm(mainForm) {
-    console.log(mainForm);
+  saveMainDepositForm(depositForm) {
+    console.log(depositForm);
 
     return this.http
-      .post(`${this.API_URL}auth/customer/visit/detail/save`, { ...mainForm })
+      .post(`${this.API_URL}auth/customer/visit/main/deposit/save`, {
+        ...depositForm,
+      })
       .pipe(
         catchError((err) => {
           return throwError(err);
