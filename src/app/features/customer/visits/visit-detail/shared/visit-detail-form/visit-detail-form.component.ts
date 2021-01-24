@@ -77,6 +77,8 @@ export class VisitDetailFormComponent implements OnInit {
       };
   }
   fetchDefaultaFormValues() {
+    this.spinner.show();
+
     this.fetchQueryParmValues();
     this.visitDetailService
       .getVisitDetailFormValues(this.visitMainId)
@@ -92,6 +94,7 @@ export class VisitDetailFormComponent implements OnInit {
   }
 
   fetchVisitDetailForm() {
+    this.spinner.show();
     let visitDetailId = this.modalData?.visitDetails?.id;
     let visitMainId = this.modalData?.visitDetails?.customerId;
     this.spinner.show();
@@ -182,7 +185,7 @@ export class VisitDetailFormComponent implements OnInit {
   onSave() {
     console.log(this.visitDetailForm.value);
     this.spinner.show();
-    console.log('detail form ma spinner called ');
+    console.log("detail form ma spinner called ");
 
     if (this.isItToday !== true) {
       let visitDateBs = this.customDate.getStringFromNepaliFunction(
@@ -211,11 +214,10 @@ export class VisitDetailFormComponent implements OnInit {
               : this.toastr.error("Error  saving customer details.");
           }
         );
-    }else{
+    } else {
       this.spinner.hide();
       return;
     }
-
   }
 
   onDayCheck(e) {

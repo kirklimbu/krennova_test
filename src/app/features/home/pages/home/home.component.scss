@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+
+  h3 {
+    background-color: lightgrey;
+    padding: 1.1em;
+  }
+
+
+}
+/*
+.chart {
+  flex: 1 0;
+}
+ */
+.new-customer {
+  flex: 1;
+}
+
+.sms-count {
+  flex: 1;
+}
+/* .advanced-pie-legend .legend-items-container .legend-items.legend-item .item-value {
+  margin-top: 10px !important;
+  width: 250px;
+} */

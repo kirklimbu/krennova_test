@@ -11,6 +11,8 @@ import { SidenavComponent } from "./components/sidenav/pages/sidenav.component";
 import { OnreturnDirective } from "./directives/onreturn.directive";
 import { ConnectorDirective } from "./directives/connector.directive";
 import { ToastrModule, ToastrService } from "ngx-toastr";
+import { NgxChartsModule } from "@swimlane/ngx-charts";
+
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { HttpTokenInterceptorService } from "../core/http-interceptor/http-token/http-token-interceptor.service";
 const DECLARATIONS: any[] = [
@@ -25,6 +27,8 @@ const DECLARATIONS: any[] = [
     CommonModule,
     CoreRoutingModule,
     MaterialModule,
+    NgxChartsModule,
+
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: "toast-bottom-right",
@@ -34,7 +38,7 @@ const DECLARATIONS: any[] = [
       progressAnimation: "increasing",
     }),
   ],
-  exports: [...DECLARATIONS],
+  exports: [...DECLARATIONS,NgxChartsModule],
   providers: [ToastrService, AuthGuardService, ConnectorDirective],
 })
 export class CoreModule {}

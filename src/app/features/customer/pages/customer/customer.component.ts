@@ -31,6 +31,7 @@ export class CustomerComponent implements OnInit {
   clientListTable: any[] = [];
   displayedColumns: string[] = [
     "S.n",
+    'Id',
     "name",
     "address",
     "mobile",

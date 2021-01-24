@@ -40,7 +40,13 @@
             <div class="col">
               <app-form-group [required]="true">
                 <mat-form-field class="=full-width">
-                  <input matInput type="text" placeholder=" Address" required />
+                  <input
+                    matInput
+                    type="text"
+                    placeholder=" Address"
+                    formControlName="address"
+                    required
+                  />
                   <mat-hint align="end">Enter Address </mat-hint>
                   <!--<mat-error *ngIf="hasError('address', 'required')">Address is required</mat-error>
   <mat-error *ngIf="hasError('address', 'maxlength')">You have more than 100 characters</mat-error>-->

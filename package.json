@@ -24,6 +24,7 @@
     "@angular/router": "~10.2.2",
     "@auth0/angular-jwt": "^5.0.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.1",
+    "@swimlane/ngx-charts": "^17.0.0",
     "angular-nepali-datepicker": "^0.1.4",
     "bootstrap": "^4.4.1",
     "faker": "^4.1.0",

@@ -1,1 +1,70 @@
-<p class="content-wrapper">Hello Dashboard</p>
+<div class="container content-wrapper">
+  <xng-breadcrumb></xng-breadcrumb>
+  <div class="row">
+    <!-- select option -->
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose </mat-label>
+        <mat-select
+          [(value)]="selectedChart"
+          (selectionChange)="onChooseChart($event.value)"
+        >
+          <mat-option *ngFor="let chart of charts" [value]="chart">{{
+            chart
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <!-- select option end -->
+  </div>
+  <!-- row -->
+  <div class="row">
+    <!-- first col -->
+    <div
+      class="col-md-4 chart"
+      *ngIf="selectedChart === 'Vertical Bar'"
+      fxFlex="50%"
+    >
+      <!-- row end -->
+      <h3>Vertical Bar Chart</h3>
+
+      <ngx-charts-bar-vertical
+        [view]="[1000, 400]"
+        [results]="chartData$ | async"
+        [xAxisLabel]="'Visit Type'"
+        [legendTitle]="'Patients Survey'"
+        [yAxisLabel]="'Number of patients'"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxis]="true"
+        [yAxis]="true"
+        [gradient]="true"
+      >
+      </ngx-charts-bar-vertical>
+    </div>
+    <!-- first col end -->
+    <!-- second col  -->
+    <div class="col-md-4 chart" *ngIf="selectedChart === 'Pie Chart'">
+      <h3>Pie Chart</h3>
+      <ngx-charts-pie-chart
+        [results]="surveyData"
+        [legend]="true"
+        [legendTitle]="'Vehicle Survey'"
+        [view]="[1000, 300]"
+        [labels]="true"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+    <!-- second col end -->
+    <!-- third col -->
+    <div class="col-md-4 chart" *ngIf="selectedChart === 'Advance Pie Chart'">
+      <h3>Advance Pie Chart</h3>
+      <ngx-charts-advanced-pie-chart [results]="surveyData" [gradient]="true">
+      </ngx-charts-advanced-pie-chart>
+    </div>
+    <!-- third col end -->
+  </div>
+  <div class="new-customer">second</div>
+  <div class="sms-count">third</div>
+</div>

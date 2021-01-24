@@ -61,6 +61,7 @@ body {
   margin: 0.2rem 0.25rem 5rem 0.25rem;
   border-radius: 0.22rem;
   min-height: 100vh;
+  height: 100%;
   min-width: 220px;
   box-shadow: 0 8px 6px -6px black;
 }
@@ -142,18 +143,10 @@ mat-toolbar {
   place-items: center;
   height: auto;
 
-  /* min-height: 'calc(100vh - 90px)';
-  height: 'auto';
- */
+
 }
 
-/* .form-title {
-  display: inline-flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 120px;
-}
- */
+
 .client-card {
   padding: 2rem;
   min-width: 40rem;
@@ -170,10 +163,6 @@ mat-toolbar {
   width: 85%;
 }
 
-.card-actions {
-  // padding: ;
-  // margin: 1rem 5.5rem 0 0;
-}
 
 .divider {
   margin-top: 0;

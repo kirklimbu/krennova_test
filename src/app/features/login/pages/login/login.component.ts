@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       /* if (!this.jwtHelper.isTokenExpired(token)) {
                 this.router.navigateByUrl('/customer/customerlist');
             } */
-      this.router.navigateByUrl("/dental/");
+      this.router.navigate["/dental/home"];
     }
   }
 

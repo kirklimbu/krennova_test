@@ -98,7 +98,7 @@ export class CustomerFormComponent implements OnInit {
       this.customerForm = this.formBuilder.group({
         name: [this.client.name],
         mobile: [this.client.mobile],
-        // address: [this.client.address],
+        address: [this.client.address],
         dob: [this.client.dob],
         today: [this.client.today],
         regDateBs: [this.client.regDateBs],
@@ -111,7 +111,7 @@ export class CustomerFormComponent implements OnInit {
         id: [this.client.id],
         name: [this.client.name],
         mobile: [this.client.mobile],
-        // address: [this.client.address],
+        address: [this.client.address],
         dob: [this.client.dob],
         today: [this.client.today],
 
