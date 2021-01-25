@@ -1,60 +1,123 @@
 <div class="content-wrapper">
-  <!-- table top bar -->
-  <app-table-top-bar
-    [enableSearch]="true"
-    [enableFromDate]="true"
-    [enableToDate]="true"
-    (search)="onSearch($event)"
-  ></app-table-top-bar>
-  <!-- table top bar end-->
-  <table
-    mat-table
-    [dataSource]="invoiceListDataSource$ | async"
-    class="mat-elevation-z8"
-  >
-    <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
+  <!-- print button -->
+  <div class="print-button-container">
+    <button
+      [useExistingCss]="true"
+      type="button"
+      mat-icon-button
+      color="warn"
+      printSectionId="print-section"
+      ngxPrint
+      ngbTooltip="Print invoice"
+      (click)="onPrintStatusCheck()"
+    >
+      <mat-icon>print</mat-icon>
+    </button>
+  </div>
+  <!-- print button end -->
+  <div id="print-section">
+    <div class="print-content">
+      <!-- company name -->
+      <div class="row no-gutters" id="header">
+        <!--   <div class="col-md-3">
+        <img
+          src="/assets/images/nnc_logo.png"
+          alt="logotipo"
+          class="logotipo"
+        />
+      </div> -->
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-    </ng-container>
+        <div class="col-md-7 name mx-auto">
+          <h2 class="text-center">{{ orgDetail.organization }}</h2>
+          <h6 class="text-center mx-auto">We care for your smile</h6>
+          <h5 class="text-center">Estd. 2072 B.S</h5>
+        </div>
+      </div>
+      <!-- company name end -->
+      <!-- Invoice To -->
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="invoice-address">
+            <h2>INVOICE</h2>
+            <!-- invoice details table -->
+            <!--  <table class="table table-borderless table-sm">
+          <thead>
+            <tr>
+              <th>Invoice num</th>
+              <th>Date of issue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ invoice.invoiceNum }}</td>
+              <td>{{ invoice.dateOfIssue }}</td>
+            </tr>
+          </tbody>
+        </table> -->
+            <!-- invoice details table -->
+            <!-- customer details table -->
+            <table class="table table-borderless table-sm">
+              <!--  <thead>
+            <tr>
+              <th scope="row">Invoice num</th>
+              <th scope="rwo">Date of issue</th>
+            </tr>
+          </thead> -->
+              <tbody>
+                <tr>
+                  <th>Invoce num:</th>
+                  <td>{{ invoice.invoiceNum }}</td>
+                </tr>
+                <tr>
+                  <th>Date of Issue:</th>
+                  <td>{{ invoice.dateOfIssue }}</td>
+                </tr>
+                <tr>
+                  <th>Billed to:</th>
+                  <td>{{ invoice.customerName }}</td>
+                </tr>
+                <tr>
+                  <th>Address:</th>
+                  <td>{{ invoice.customerAddress }}</td>
+                </tr>
+                <tr>
+                  <th>Mobile:</th>
+                  <td>{{ invoice.customerMobile }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- customer details table end-->
+          </div>
+        </div>
+      </div>
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
-      <td mat-cell *matCellDef="let element">{{ element.address }}</td>
-    </ng-container>
-
-    <!-- Weight Column -->
-    <ng-container matColumnDef="mobile">
-      <th mat-header-cell *matHeaderCellDef>Weight</th>
-      <td mat-cell *matCellDef="let element">{{ element.mobile }}</td>
-    </ng-container>
-
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="purposeOfVisit">
-      <th mat-header-cell *matHeaderCellDef>Purpose Of Visit</th>
-      <td mat-cell *matCellDef="let element">{{ element.purposeOfVisit }}</td>
-    </ng-container>
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>Action</th>
-      <td mat-cell *matCellDef="let element">
-        {{ element.action }}
-        <button
-          type="button"
-          mat-raised-button
-          color="accent"
-          printSectionId="print-section"
-          ngxPrint
-        >
-          Print
-        </button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
+      <!-- items description table  -->
+      <table class="table invoice-table">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th class="calculation-table-head">Unit</th>
+            <th class="calculation-table-head">Rate</th>
+            <th class="calculation-table-head">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>RCT</td>
+            <td class="calculation-table-head">1</td>
+            <td class="calculation-table-head">2500</td>
+            <td class="calculation-table-head">2500</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="calculation-table-head" colspan="2"></td>
+            <td class="calculation-table-head">Total</td>
+            <td class="calculation-table-head">2500</td>
+          </tr>
+        </tfoot>
+      </table>
+      <!-- items description table end  -->
+    </div>
+  </div>
 </div>

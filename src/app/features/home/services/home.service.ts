@@ -13,7 +13,7 @@ export class HomeService {
 
   constructor(private http: HttpClient) {}
 
-  getChartData() {
+  getChartData():any {
     return this.http.get(`${this.API_URL}auth/dashboard`).pipe(
       catchError((err) => {
         return throwError(err);

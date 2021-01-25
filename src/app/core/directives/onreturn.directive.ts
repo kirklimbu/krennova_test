@@ -20,8 +20,6 @@ export class OnreturnDirective {
   }
 
   @HostListener("keydown", ["$event"]) onKeyDown(e) {
-    console.log(e);
-
     if (e.which == 13 || e.keyCode == 13) {
       e.preventDefault();
       if (e.srcElement.form) {

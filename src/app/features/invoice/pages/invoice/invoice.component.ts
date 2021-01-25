@@ -1,14 +1,15 @@
+import { PopupModalComponent } from "./../../../../shared/components/popup-modal/popup-modal.component";
 import { InvoiceService } from "./../../services/invoice.service";
 import { NgxSpinnerService } from "ngx-spinner";
 import { FormatDate } from "./../../../../core/constants/format-date";
 import { Component, OnInit } from "@angular/core";
-import { MatTableDataSource } from "@angular/material";
+import { MatDialog, MatTableDataSource } from "@angular/material";
 import { Router } from "@angular/router";
 import { Customer } from "src/app/core/models/customer";
 import { ApiService } from "src/app/_services/api.service";
-import { finalize } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { finalize } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-invoice",
@@ -28,6 +29,18 @@ export class InvoiceComponent implements OnInit {
     "purposeOfVisit",
     "action",
   ];
+  invoice = {
+    customerName: "Yemjee Shrestha",
+    customerEmail: "YemjeeShrestha@gmail.com",
+    customerMobile: "9858584758",
+    customerAddress: "Damak 1",
+    invoiceNum: 123,
+    dateOfIssue: "2077/12/03",
+    total: 2500,
+  };
+  orgDetail={
+    organization:'Aama Dental Care Clinic Pvt Ltd'
+  }
   client: Customer;
 
   constructor(
@@ -35,7 +48,8 @@ export class InvoiceComponent implements OnInit {
     private route: Router,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -79,4 +93,21 @@ export class InvoiceComponent implements OnInit {
     }
     /* test end */
   }
+
+  onPrintStatusCheck() {
+    const dialogRef = this.dialog.open(PopupModalComponent, {
+      disableClose: true,
+      width: "450px",
+      data: {
+        title: "",
+        message: "Was the print successful?",
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log("The dialog was closed " + result);
+      result === "yes" ? this.savePrint() : null;
+    });
+  }
+  savePrint() {}
 }

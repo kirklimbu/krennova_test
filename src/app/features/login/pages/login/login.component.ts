@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
     console.log("router change called");
 
     const token = localStorage.getItem("token");
-    console.log(token);
     if (token !== null) {
       /* if (!this.jwtHelper.isTokenExpired(token)) {
                 this.router.navigateByUrl('/customer/customerlist');
@@ -82,7 +81,7 @@ export class LoginComponent implements OnInit {
             this.loading = false;
 
             this.loggedIn.next(true);
-            this.router.navigate(["/dental"]);
+            this.router.navigate(["/dental/home"]);
           },
           (err) => {
             err.status == 400

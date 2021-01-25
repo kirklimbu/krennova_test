@@ -199,3 +199,32 @@ mat-toolbar {
 .tab-bar {
   margin: 2rem 0 2rem 0;
 }
+
+/* charts */
+.chart-container {
+  height: 25px;
+}
+
+.calculation-table-head {
+  // float: right;
+  // width: 20%;
+  text-align: right;
+}
+
+/* print section */
+.print-button-container {
+  display: flex;
+  align-items: flex-end;
+}
+
+.invoice-table {
+  margin: 2rem 0 0 0;
+}
+
+.invoice-address {
+  margin-top: 2rem;
+}
+
+.print-content {
+  margin-left: 30mm;
+}

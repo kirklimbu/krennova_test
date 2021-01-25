@@ -1,28 +1,9 @@
-.container {
-  display: flex;
-  flex-direction: column;
 
-
-  h3 {
-    background-color: lightgrey;
-    padding: 1.1em;
-  }
-
-
+.example-container {
+  padding: 1rem 0 1rem 0;
+  height: 400px;
+  overflow: auto;
 }
-/*
-.chart {
-  flex: 1 0;
+table{
+  width: 100%;
 }
- */
-.new-customer {
-  flex: 1;
-}
-
-.sms-count {
-  flex: 1;
-}
-/* .advanced-pie-legend .legend-items-container .legend-items.legend-item .item-value {
-  margin-top: 10px !important;
-  width: 250px;
-} */
