@@ -1,6 +1,7 @@
-import { LoginService } from "./../../../features/login/services/login.service";
-import { SidenavService } from "./../sidenav/services/sidenav.service";
+import { UserService } from "./../../../features/user/services/user.service";
+
 import { Component, OnInit } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-navbar",
@@ -9,20 +10,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class NavbarComponent implements OnInit {
   /* props */
-  toggleActive: boolean = false;
-  title: string; // for navBar title
-  constructor(
-    /* this value toggles our sidenav html=> sidenav.toggle() */
-    public sidenav: SidenavService,
-    private loginService: LoginService
-  ) {}
+  usersCount: any;
+  constructor(private userService: UserService) {}
 
-  ngOnInit(): void {}
-  onChangeIcon() {
-    this.toggleActive = !this.toggleActive;
-  }
-
-  onLogout() {
-    this.loginService.logout();
+  ngOnInit(): void {
+    this.usersCount = this.userService.totalUsers$;
   }
 }

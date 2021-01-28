@@ -1,20 +1,5 @@
-<!--<nav class="navbar navbar-expand navbar-light bg-light" *ngIf="currentUser">-->
 <nav class="navbar navbar-expand-md navbar-light bg-light mb-4">
-  <button
-    #drawer
-    mat-icon-button
-    [class.active]="toggleActive"
-    (click)="sidenav.toggle()"
-    class="rightSidenav_toggle"
-  >
-    <mat-icon color="primary" (click)="onChangeIcon()">{{
-      toggleActive ? "menu" : "sort"
-    }}</mat-icon>
-  </button>
-  <span class="navbar-brand" style="font-family: 'URW Gothic'">
-    <!--      <img src="assets/images/logo.png" style="width: 80px;height: 80px">-->
-    Aama Dental |
-  </span>
+  <span class="navbar-brand" style="font-family: 'URW Gothic'"> Test | </span>
   <button
     class="navbar-toggler m-auto"
     type="button"
@@ -33,73 +18,31 @@
     style="font-family: Cantarell"
   >
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <!-- <li class="nav-item">
+      <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
-          [routerLink]="['/dental/dashboard']"
-          >Home</a
+          [routerLink]="['/home/users']"
+          >View Users</a
         >
-      </li> -->
-      <!--  <li class="nav-item">
+      </li>
+      <li class="nav-item">
         <a
           class="nav-item nav-link"
           routerLinkActive="is-active"
-          [routerLink]="['/dental/sms']"
-          >SMS</a
-        >
-      </li> -->
-      <!-- <li class="nav-item">
-        <a
-          class="nav-item nav-link"
-          routerLinkActive="is-active"
-          [routerLink]="['/dental/invoice']"
-          >Invoice</a
-        >
-      </li> -->
-      <!-- <li class="nav-item">
-        <a
-          class="nav-item nav-link"
-          routerLinkActive="is-active"
-          [routerLink]="['/pov']"
-          >Enter POV</a
-        >
-      </li> -->
-      <!--  <li class="nav-item">
-        <a
-          class="nav-item nav-link"
-          routerLinkActive="is-active"
-          [routerLink]="['/dental/client']"
-          >client list</a
-        >
-      </li> -->
-      <!--    <a class="nav-item nav-link" routerLink="/customerlist">Client </a>-->
-      <!--    <a class="nav-item nav-link" routerLinkActive="is-active"="active" (click)="logout()">Logout</a>-->
+          [routerLink]="['/home/add-user']"
+          >Add User
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav justify-content-end">
+      <li class="nav-item">
+        <h4>Total num of users: {{ usersCount?._value }}</h4>
+      </li>
     </ul>
   </div>
 
   <button mat-icon-button aria-label="Example icon-button with a menu"></button>
-  <a class="navbar-brand">
-    <div class="logo-image">
-      <img
-        src="assets/images/logo.png"
-        class="img-fluid"
-        [matMenuTriggerFor]="menu"
-      />
-    </div>
-  </a>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>settings</mat-icon>
-      <span>Account Settings</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon color="warn">power_settings_new</mat-icon>
-      <span class="logout" (click)="onLogout()">Logout</span>
-    </button>
-  </mat-menu>
+  <a class="navbar-brand"> </a>
+  <mat-menu #menu="matMenu"> </mat-menu>
 </nav>

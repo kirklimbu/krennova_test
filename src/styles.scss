@@ -50,181 +50,44 @@ body {
 .content-wrapper {
   padding: 30px;
   height: auto;
-
 }
 
-.sidenav {
-  background: rgb(224, 228, 230);
-  // background: #d4f2a4;
-  grid-column: 1 / 2;
-  padding: 1rem 0 0.5rem 0;
-  margin: 0.2rem 0.25rem 5rem 0.25rem;
-  border-radius: 0.22rem;
-  min-height: 100vh;
-  height: 100%;
-  min-width: 220px;
-  box-shadow: 0 8px 6px -6px black;
-}
-
-.sidenav .logo-sn a {
-  display: block;
-  padding: 17px 0;
-}
-
-.logo-sn img {
+.card-container {
   display: grid;
-  max-width: 25px;
-  align-items: center;
-}
-
-.main-content {
-  background: rgb(221, 212, 209);
-  // background: #75b5dd;
-  grid-column: 2 / 4;
-  min-height: 100vh;
-}
-
-mat-icon {
-  padding: 0 2.5rem 0 0;
-}
-
-.sidenav-items a:hover {
-  // color: rgb(4, 129, 212);
-  // color: #caf4c2;
-  // color: #0469a7
-  color: #28b0de;
-}
-
-.sidenav-items a:active {
-  background-color: #69f0ae;
-}
-
-.logout:hover {
-  border-bottom: red;
-  color: red;
-}
-
-mat-icon .power_settings_new:hover {
-  border-bottom: red;
-  color: red;
+  place-items: center;
+  height: auto;
+  width: 55px;
 }
 
 .mat-table {
-  width: 100%;
+  width: 75%;
+  margin-left: 15%;
   padding-right: 0;
 }
 
-.top-bar-search {
+.user-list-table {
   display: grid;
-  gap: 0.25rem;
-  grid-auto-flow: column;
+  place-items: center;
 }
 
-mat-toolbar {
-  display: flex;
-  flex-direction: column;
+.user-card {
+  width: 50%;
+  display: grid;
+  place-items: center;
 }
 
-.top-bar-add {
-  display: grid;
-  place-items: end;
-  margin-bottom: 0.25rem;
-  float: right;
+.forms{
+  margin-left: 30%;
 }
 
 .full-width {
   width: 100%;
   // padding: 4rem;
-}
 
-.card-container {
-  // margin: 0 auto;
-  display: grid;
-  place-items: center;
-  height: auto;
-
-
-}
-
-
-.client-card {
-  padding: 2rem;
-  min-width: 40rem;
-  width: 40rem;
-}
-
-.nep-date-picker {
-  border: 0;
-  width: 75%;
-  margin-top: 1rem;
-}
-
-.datepicker__input {
-  width: 85%;
-}
-
-
-.divider {
-  margin-top: 0;
-  margin-bottom: 2rem;
 }
 
 .save-cancel-buttons {
   display: grid;
   place-items: center;
   padding: .5rem;
-}
-
-.isToday-checkbox {
-  display: grid;
-  place-items: center;
-  margin-top: 0;
-}
-
-/* breadcrumb */
-.xng-breadcrumb-trail {
-  margin-top: .5rem
-}
-
-/* popup/modal table */
-.add-table-row {
-  display: inline-table;
-}
-
-.modal-table {
-  width: 32rem;
-  margin-top: 2rem;
-}
-
-.tab-bar {
-  margin: 2rem 0 2rem 0;
-}
-
-/* charts */
-.chart-container {
-  height: 25px;
-}
-
-.calculation-table-head {
-  // float: right;
-  // width: 20%;
-  text-align: right;
-}
-
-/* print section */
-.print-button-container {
-  display: flex;
-  align-items: flex-end;
-}
-
-.invoice-table {
-  margin: 2rem 0 0 0;
-}
-
-.invoice-address {
-  margin-top: 2rem;
-}
-
-.print-content {
-  margin-left: 30mm;
 }

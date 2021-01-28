@@ -18,8 +18,8 @@ export class PopupModalComponent implements OnInit {
     public dialogRef: MatDialogRef<PopupModalComponent>,
     @Inject(MAT_DIALOG_DATA) private modalData: any // teacher component le teacher object pathako child component (delete componment lai)
   ) {
-    this.title = this.modalData.title;
-    this.message = this.modalData.message;
+   /*  this.title = this.modalData.title;
+    this.message = this.modalData.message; */
   }
 
   ngOnInit(): void {}
